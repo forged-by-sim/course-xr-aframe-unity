@@ -1,0 +1,55 @@
+1. What is commonly referred to as immersive authoring?
+==> Concurrent design and testing in AR or VR
+
+
+2. Which of the following statements about immersive authoring tools for AR is not correct?
+==> Allow designers to do everything Unity can do without programming 
+
+
+3. Which of the following statements about A-Frame is not correct?
+==> Supports visual authoring of scenes just like the Unity Editor
+
+
+4. Which statement best describes Unity?
+==> One of the most popular platforms for AR/VR application development
+
+
+5. Which of the following is not a common digital prototyping strategy?
+==> Paper prototyping
+
+
+6. Which of the following are not usability metrics? Choose all that apply.
+
+==> Usefulness
+==> Utility
+
+
+7. Which of the following are usability metrics specific to XR? Choose all that apply.
+
+==> Realism
+==> Safety
+==> Comfort
+
+
+8. Which of the following are common usability evaluation methods? Choose all that apply.
+
+==> Paper prototype testing
+==> User testing
+==> Cognitive walkthrough
+==> Heuristic evaluation
+
+
+9. Which of the following statements about user testing is correct?
+==> More than 5 users doesn’t reveal a lot more issues
+
+
+10. Which of the following statements are true about what is a good task for user testing? Choose all that apply.
+
+==> Based on questions important to the success of the product or research
+==> Not too broad or too narrow
+==> Based on a goal that matters to you and the users
+
+
+
+
+
