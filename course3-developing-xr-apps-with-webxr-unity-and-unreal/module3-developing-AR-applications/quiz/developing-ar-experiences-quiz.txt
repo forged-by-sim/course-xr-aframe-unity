@@ -1,0 +1,66 @@
+1. Which of the following statements are correct about AR displays? Choose all that apply.
+
+==> Head-worn AR means using a form of glasses to see the AR world directly and always
+==> Marker-less AR means using the AR device as a lens into the AR world
+==> Marker-based AR means using a fiducial marker as a portal into the AR world
+==> Monitor-based AR means using a monitor as a mirror into the AR world
+
+
+2. Which of the following statements are correct about marker-less AR systems as far as environmental understanding is concerned? Choose all that apply.
+
+==> They implement scene understanding to provide classification labels for recognized environmental features such as walls and windows
+==> They implement plane detection to provide the location and size of detected surfaces
+==> They implement spatial mapping to provide a point cloud for depth sensing and occlusion rendering
+
+
+3. Which of the following are key design issues when creating AR applications? Choose all that apply.
+
+==> Navigating social and ethical concerns when collecting and processing data about the user’s surroundings.
+==> Making the virtual content accessible to users with special needs.
+==> Adapting the interactions to a broad range of AR devices including less powerful devices.
+
+
+4. How would you explain how marker-based tracking works at a technical level? Choose one (1). 
+
+==> The system analyzes each camera frame to segment out the marker and identify key components that allow it to estimate the pose.
+
+
+5. What are potential benefits of using marker-based as opposed to marker-less AR? Choose all that apply.
+
+==> Marker-based AR provides a simple way to support co-located experiences around a shared marker.
+==> Marker-based AR can be used for rapid prototyping by simulating interactions using markers.
+==> Marker-based AR is compatible with less powerful, low-end devices.
+==> Marker-based AR can be used to simulate detecting objects and people in the environment.
+
+
+6. What are two (2) advantages of using marker-less AR compared to marker-based AR?
+
+==> The user is free to move around at room or world scale.
+==> There is no need for instrumentation of the user or environment.
+
+
+7. Which of these are key design considerations when adapting VR scenes to smartphone-based AR? Choose all that apply.
+
+==> Position and size of virtual objects and how they fit into and blend with the user’s environment
+==> Whether AR users will be able to see the main virtual objects or whether the spatial layout needs to be adapted to fit the smaller field of view
+==> Whether the AR experience should be tabletop, room, or world scale
+==> How controller- or hand-based interactions should be adapted for touch and speech input
+
+
+8. What are key design differences between hand-held and head-worn AR experiences? Choose all that apply.
+
+==> Physical size of hand-held AR displays varies more than the field of view of head-worn AR displays
+==> Tracking capabilities of head-worn AR displays are usually more advanced
+
+
+9. What tips and tricks would you give someone designing marker-based AR applications? Choose all that apply.
+
+==> Marker size determines the scale of the AR experience.
+==> Smaller markers are harder to detect and track continuously.
+
+
+10. What tips and tricks would you give someone designing marker-less AR applications? Choose all that apply.
+
+
+==> Provide a matching visual preview before placing the AR content in the environment.
+==> Incorporate light and shadow into the AR scene to better blend with the environment in the absence of light estimation.
