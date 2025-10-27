@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Rhomaleosaurus Interactive Viewer</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene background="color: #0b1a2b" shadow="type: pcfsoft">
+      
+      <!-- Lighting -->
+      <a-light type="ambient" color="#88ccee" intensity="0.5"></a-light>
+      <a-light type="directional" color="#ffffff" intensity="1.2" position="2 4 3" castShadow="true"></a-light>
+      <a-light type="point" color="#aaddff" intensity="0.3" position="-2 3 1"></a-light>
+
+      <!-- Animated Rhomaleosaurus -->
+      <a-entity
+        id="rhomaleosaurus"
+        gltf-model="url(models/rhomaleosaurus_low.glb)"
+        animation-mixer
+        position="0 2 -0.1"
+        rotation="0 0 0"
+        scale="0.5 0.5 0.5"
+        shadow="cast: true; receive: true">
+      </a-entity>
+
+      <!-- Reflective floor -->
+      <a-plane 
+        color="#222"
+        metalness="0.4"
+        roughness="0.2"
+        rotation="-90 0 0"
+        width="30"
+        height="30"
+        shadow="receive: true">
+      </a-plane>
+
+      <!-- Camera rig -->
+      <a-entity id="rig" position="0 1.8 4">
+        <a-camera orbit-controls="
+          target: #rhomaleosaurus;
+          enableDamping: true;
+          dampingFactor: 0.125;
+          rotateSpeed: 0.25;
+          minDistance: 2;
+          maxDistance: 8;
+          maxPolarAngle: 90;">
+        </a-camera>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
