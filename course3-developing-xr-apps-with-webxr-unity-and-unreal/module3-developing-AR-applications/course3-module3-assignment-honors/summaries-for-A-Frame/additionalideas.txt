@@ -1,0 +1,26 @@
+
+Why it’s sufficient for AR/VR
+
+3D model with animation – The dino moves naturally.
+
+Orbitable camera – Users can view it from all sides, above, and below.
+
+Dynamic info panel – Provides context and labels, always facing the user.
+
+Lighting and shadows – Makes the model look realistic.
+
+AR/VR compatibility – Since I'm using model-viewer.js and A-Frame’s XR features, I can add an AR mode easily later.
+
+Optional Enhancements
+
+I could add more features for a truly polished AR experience, like:
+
+Multiple info panels for different body parts.
+
+Interactive tooltips or clickable info.
+
+Scale & placement in real-world AR using ar-hit-test or ar.js.
+
+Sound effects or narration when users approach the model.
+
+It’s been a fun journey turning my Rhomaleosaurus into a fully interactive, polished AR-ready scene.

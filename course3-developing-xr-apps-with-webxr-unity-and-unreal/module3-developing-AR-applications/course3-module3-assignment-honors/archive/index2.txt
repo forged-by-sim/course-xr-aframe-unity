@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rhomaleosaurus Viewer</title>
+    <meta name="description" content="Dino Model Viewer Scene">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- A-Frame core -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+    <!-- Model Viewer scripts -->
+    <script src="model-viewer/animation-mixer.js"></script>
+    <script src="model-viewer/background-gradient.js"></script>
+    <script src="model-viewer/ar-shadows.js"></script>
+    <script src="model-viewer/model-viewer.js"></script>
+  </head>
+  <body>
+
+    <a-scene
+      renderer="colorManagement: true;"
+      model-viewer="gltfModel: #rhomaleosaurus; title: Rhomaleosaurus">
+
+      <a-assets timeout="10000">
+        <!-- Dino model -->
+        <a-asset-item id="rhomaleosaurus" src="models/rhomaleosaurus.glb"></a-asset-item>
+        <!-- Optional shadow image -->
+        <img id="shadow" src="model-viewer/shadow.png">
+      </a-assets>
+
+      <!-- Floating Info Panel -->
+      <a-entity position="1.5 1.8 -2" look-at="[camera]">
+        <!-- Panel background -->
+        <a-plane width="1.2" height="0.8" color="#000000" opacity="0.6" material="shader: flat"></a-plane>
+
+        <!-- Title -->
+        <a-text value="Rhomaleosaurus" color="#ffffff" 
+                align="center" width="1" position="0 0.25 0.01"></a-text>
+
+        <!-- Description -->
+        <a-text value="Large carnivorous marine reptile\nEarly Jurassic period\nPowerful flippers and streamlined body." 
+                color="#ffffff" align="center" width="1" position="0 -0.1 0.01"></a-text>
+      </a-entity>
+
+    </a-scene>
+
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rhomaleosaurus Viewer</title>
+    <meta name="description" content="Dino Model Viewer Scene">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- A-Frame core -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+    <!-- Model Viewer scripts (from A-Frame example) -->
+    <script src="model-viewer/animation-mixer.js"></script>
+    <script src="model-viewer/background-gradient.js"></script>
+    <script src="model-viewer/ar-shadows.js"></script>
+    <script src="model-viewer/model-viewer.js"></script>
+  </head>
+  <body>
+
+    <a-scene
+      renderer="colorManagement: true;"
+      info-message="htmlSrc: model-viewer/message.html"
+      model-viewer="gltfModel: #rhomaleosaurus; title: Rhomaleosaurus">
+      
+      <a-assets timeout="10000">
+        <!-- Dino model -->
+        <a-asset-item id="rhomaleosaurus" src="models/rhomaleosaurus.glb"></a-asset-item>
+        <!-- Optional shadow image -->
+        <img id="shadow" src="model-viewer/shadow.png">
+      </a-assets>
+
+    </a-scene>
+
+  </body>
+</html>

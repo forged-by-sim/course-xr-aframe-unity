@@ -1,0 +1,43 @@
+Here are a few quick visual polish tips that will make the scene feel much more “museum-quality”:
+
+1. Background gradient / sky
+
+Right now you have the default scene background. You can make it more cinematic:
+
+<a-sky color="#a0e0ff"></a-sky>
+
+
+Or use a gradient via the background-gradient.js you already included. A soft gradient makes your dino pop and avoids that “floating in nothing” look.
+
+2. Ground / shadow improvements
+
+Add a subtle texture to the ground plane instead of plain gray: marble, sand, or dirt textures.
+
+Make the shadow slightly softer or bigger to give your model weight and presence.
+
+<a-plane rotation="-90 0 0" width="10" height="10" material="color: #ccc; roughness: 1" shadow></a-plane>
+
+3. Lighting tweaks
+
+Add a rim light behind the dino to outline it nicely:
+
+<a-light type="spot" position="-5 5 -5" intensity="0.3" angle="60" penumbra="0.5" castShadow="true"></a-light>
+
+
+Slightly reduce the ambient light and let directional lights create subtle depth. This adds realism.
+
+4. Panel polish
+
+Add rounded edges and a slight glow to the info panel using shader: flat with opacity + border texture or a semi-transparent PNG.
+
+Slightly animate the panel to “float” up and down to catch attention:
+
+<a-animation attribute="position" dur="3000" direction="alternate" repeat="indefinite" to="1.5 1.85 0"></a-animation>
+
+5. Camera tweaks
+
+Enable damping / smooth orbit in model-viewer.js so rotating around the dino feels fluid.
+
+Slight zoom limits prevent the camera from clipping into the model.
+
+All of these are minor tweaks that visually elevate your scene without touching the core interactivity or AR features.

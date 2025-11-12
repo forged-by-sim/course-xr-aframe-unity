@@ -1,0 +1,82 @@
+Here’s a summary of dynamic panel positioning and scaling enhancements for my 3D info panel:
+
+1. Why Dynamic Positioning Matters
+
+Right now, my panel is positioned statically:
+
+<a-entity position="1.5 1.8 -2" look-at="[camera]">...</a-entity>
+
+
+Problems:
+
+On different screen sizes or camera positions, it might feel too far, too high, or misaligned with the model.
+
+If the model is scaled differently, the panel may appear too small or too large relative to the dino.
+
+Dynamic positioning ensures the panel always appears next to the model and scales proportionally.
+
+2. Using A-Frame for Dynamic Positioning
+
+A simple approach:
+
+Parent the panel to the model:
+
+<a-entity id="rhomaleosaurus-entity" gltf-model="#rhomaleosaurus" animation-mixer scale="0.5 0.5 0.5">
+  <!-- Floating info panel inside model entity -->
+  <a-entity class="info-panel" position="1.5 1.8 0" look-at="[camera]">
+    <a-plane width="1.2" height="0.8" color="#000000" opacity="0.6" material="shader: flat"></a-plane>
+    <a-text value="Rhomaleosaurus" color="#ffffff" align="center" width="1" position="0 0.25 0.01"></a-text>
+    <a-text value="Large carnivorous marine reptile\nEarly Jurassic period\nPowerful flippers and streamlined body."
+            color="#ffffff" align="center" width="1" position="0 -0.1 0.01"></a-text>
+  </a-entity>
+</a-entity>
+
+
+Now, if I move or scale the model, the panel moves with it automatically.
+
+Scale the panel based on the model size:
+
+Use JavaScript to read the model’s bounding box and adjust the panel scale:
+
+<script>
+AFRAME.registerComponent('panel-scale', {
+  init: function () {
+    const model = this.el.getObject3D('mesh');
+    if (!model) { return; }
+    
+    const box = new THREE.Box3().setFromObject(model);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+
+    const panel = this.el.querySelector('.info-panel');
+    if (panel) {
+      const scaleFactor = Math.max(size.x, size.y, size.z) * 0.5;
+      panel.setAttribute('scale', `${scaleFactor} ${scaleFactor} ${scaleFactor}`);
+      panel.setAttribute('position', `${size.x + 0.5} ${size.y} 0`);
+    }
+  }
+});
+</script>
+
+
+Usage:
+
+<a-entity id="rhomaleosaurus-entity" gltf-model="#rhomaleosaurus" animation-mixer panel-scale></a-entity>
+
+
+✅ This ensures the panel always scales and positions proportionally to the dino.
+
+Keep panel facing camera:
+
+<a-entity look-at="[camera]">...</a-entity>
+
+
+Ensures readability regardless of where the user moves.
+
+3. Optional Enhancements
+
+Smooth floating animation: gently move panel up/down to draw attention.
+
+Clickable panel: show/hide more info on click using cursor events.
+
+Multiple panels: add labels for head, tail, flippers — all dynamically positioned relative to model parts.

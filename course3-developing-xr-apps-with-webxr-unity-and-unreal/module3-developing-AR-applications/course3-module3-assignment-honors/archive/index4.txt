@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rhomaleosaurus Viewer</title>
+    <meta name="description" content="Interactive 3D Dino Viewer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- A-Frame core -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+    <!-- Model Viewer scripts -->
+    <script src="model-viewer/animation-mixer.js"></script>
+    <script src="model-viewer/background-gradient.js"></script>
+    <script src="model-viewer/ar-shadows.js"></script>
+    <script src="model-viewer/model-viewer.js"></script>
+
+    <!-- Dynamic panel component -->
+    <script>
+      AFRAME.registerComponent('panel-scale', {
+        init: function () {
+          const el = this.el;
+          el.addEventListener('model-loaded', () => {
+            const mesh = el.getObject3D('mesh');
+            if (!mesh) return;
+
+            const box = new THREE.Box3().setFromObject(mesh);
+            const size = new THREE.Vector3();
+            box.getSize(size);
+
+            const panel = el.querySelector('.info-panel');
+            if (panel) {
+              const scaleFactor = Math.max(size.x, size.y, size.z) * 0.5;
+              panel.setAttribute('scale', `${scaleFactor} ${scaleFactor} ${scaleFactor}`);
+              panel.setAttribute('position', `${size.x + 0.5} ${size.y} 0`);
+            }
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+
+    <a-scene
+      renderer="colorManagement: true;"
+      model-viewer="gltfModel: #rhomaleosaurus; title: Rhomaleosaurus">
+
+      <a-assets timeout="10000">
+        <!-- Dino model -->
+        <a-asset-item id="rhomaleosaurus" src="models/rhomaleosaurus.glb"></a-asset-item>
+        <!-- Optional shadow -->
+        <img id="shadow" src="model-viewer/shadow.png">
+      </a-assets>
+
+      <!-- ===== Orbitable dinosaur entity ===== -->
+      <a-entity id="orbitable-dino" 
+                gltf-model="#rhomaleosaurus" 
+                animation-mixer 
+                position="0 0 -3" 
+                rotation="0 180 0"
+                camera-controls
+                shadow="cast: true; receive: true">
+      </a-entity>
+
+      <!-- ===== Info panel for orbitable dinosaur ===== -->
+      <a-entity class="info-panel" look-at="[camera]" position="0 1.5 -1.5">
+        <a-plane width="1.2" height="0.8" color="#000000" opacity="0.6" material="shader: flat"></a-plane>
+        <a-text value="Rhomaleosaurus" color="#ffffff" align="center" width="1" position="0 0.25 0.01"></a-text>
+        <a-text value="Large carnivorous marine reptile\nEarly Jurassic period\nPowerful flippers and streamlined body." 
+                color="#ffffff" align="center" width="1" position="0 -0.1 0.01"></a-text>
+      </a-entity>
+
+    </a-scene>
+
+  </body>
+</html>
