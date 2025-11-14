@@ -1,0 +1,129 @@
+
+🦖 Rhomaleosaurus Swimming Animation in A‑Frame (VR Viewer with Orbit Controls)
+Overview
+
+This project documents my step-by-step process of creating an interactive, animated VR viewer of the Rhomaleosaurus dinosaur using A‑Frame, a WebXR framework built on top of Three.js. The viewer supports real-time camera orbit controls, a swimming animation, and a clean lighting environment inspired by A‑Frame’s Triceratops Model Viewer.
+
+This tutorial walks through my experimental stages, including:
+
+Failed Unity animation attempts
+
+Revival of the A‑Frame approach
+
+Combining multiple features into one polished scene
+
+Lessons learned for future WebXR prototyping
+
+Phase 1: Transitioning from Unity to A‑Frame
+
+I originally attempted to build a VR/AR scene of the Rhomaleosaurus using Blender → Unity workflow. The rigging, importing, and prefab setup worked for a while, but the animation stopped playing due to persistent binding errors. The Animator showed the animation state as playing, but the bones did not move, even after multiple exports and controller rebuilds. This issue persisted across Unity 6000 and Unity 2022.3 LTS, despite controller remaps and root node fixes.
+
+Eventually, I pivoted back to A‑Frame, which had worked earlier in XR Course 3, Module 1. A‑Frame displayed the Dino and its baked-in swimming animation perfectly from the Sketchfab model.
+
+Phase 2: Reviving the Working Dino in A‑Frame
+
+I reopened the original A‑Frame project and confirmed the following:
+
+The Dino model (rhomaleosaurus.glb) swam correctly when loaded through <a-entity gltf-model> with the animation-mixer component.
+
+I placed the model inside a basic <a-scene> setup using <a-plane> for the floor and added ambient + directional lighting.
+
+The Dino was visible, animated, and centered, but the camera was static.
+
+This was working well for submission purposes, but I wanted to rotate around the Dino like in the A-Frame Triceratops Model Viewer.
+
+Phase 3: Building the Final Viewer
+
+I started by examining two working HTML variations:
+
+vstyle.html
+
+A close-up, clean scene with great lighting and camera position
+
+No orbit controls, but aesthetically pleasing layout
+
+Used look-controls and a static camera
+
+viewerstyle.html
+
+Included <a-camera> with orbit-controls
+
+Supported mouse-based rotation and zoom
+
+Proper lighting and layout inspired by the Triceratops scene
+
+Successfully played the Dino's swimming animation
+
+I wanted the visual height and distance of vstyle with the orbit and animation of viewerstyle.
+
+Phase 4: Combining Camera Orbit and Animation
+
+To merge the best of both scenes, I took the following steps:
+
+Kept the camera rig structure from viewerstyle with orbit-controls attached
+
+Used the lighting and plane configuration from vstyle for better ambient results
+
+Ensured that the <a-entity> loading the .glb model used the animation-mixer component
+
+Adjusted position, scale, and rotation to center the Dino close to the camera but not too zoomed in
+
+Applied scale="0.5 0.5 0.5" and position="0 1.5 -2.5" for optimal layout
+
+Final tweaks ensured the scene launched correctly under localhost:8000/viewerstyle.html.
+
+Phase 5: Troubleshooting and Blank Screens
+
+I encountered several roadblocks:
+
+Blank screen errors when filenames had hyphens (e.g., viewer-style.html) — renaming to viewerstyle.html resolved this
+
+GLB file wasn’t loading due to incorrect model path or case sensitivity — verified lowercase and correct folder hierarchy
+
+Lighting updates in Three.js r155 sometimes caused errors — using A‑Frame 1.4.2 or 1.5.0 minimized problems
+
+File organization caused load failures — I moved the HTML file one level above the models/ folder to keep the relative paths clean
+
+Phase 6: Researching the Triceratops Scene
+
+I examined the official Triceratops Viewer code from A‑Frame’s GitHub. Instead of using <a-camera orbit-controls>, the scene used a custom JS script: model-viewer.js. This file included extended orbit logic, background gradient, lighting presets, and VR/AR toggles.
+
+This is a more scalable solution, but for my purposes, I was able to approximate the same behavior using built-in orbit-controls.
+
+Final Results
+
+The final working viewer:
+
+Loads rhomaleosaurus.glb successfully
+
+Plays the baked-in swimming animation using animation-mixer
+
+Centers the Dino close to the user without clipping
+
+Allows full mouse orbit, zoom, and rotation using orbit-controls
+
+Works in-browser via localhost:8000/viewerstyle.html
+
+Next Steps
+
+This scene can now be:
+
+Submitted as part of a GitHub portfolio
+
+Extended into WebXR for AR/mobile viewing
+
+Enhanced with buttons to toggle narration, change environments, or switch between fossil vs. living creature
+
+I will also write a README and embed images/GIFs of the Dino in action for recruiters and fellow developers.
+
+Credits and Tools Used
+
+A‑Frame (aframe.io)
+
+Don McCurdy’s aframe-extras
+
+Sketchfab Rhomaleosaurus model (with baked-in animation)
+
+Visual Studio Code + Live Server
+
+Chrome WebXR Emulator

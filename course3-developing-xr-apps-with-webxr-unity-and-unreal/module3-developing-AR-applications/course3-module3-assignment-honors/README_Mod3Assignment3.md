@@ -12,6 +12,6 @@
 
 ![Assignment 3](VR Scene_Triceratops Model Viewer_A-Frame.mp4)
 
+I used this example model for my own dino: https://aframe.io/examples/showcase/modelviewer/
 
-
-
+The source of these files helped with orientation, animation (swim/bite feauture), and orbit controls: https://github.com/aframevr/aframe/blob/gh-pages/examples/showcase/model-viewer/index.html

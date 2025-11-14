@@ -1,0 +1,175 @@
+
+🦖 Rigging and Animating the Rhomaleosaurus in Blender and Unity
+
+By Noemi | GitHub: [forged-by-sim]
+
+📘 Overview
+
+This tutorial documents the full workflow of importing, rigging, animating, exporting, and troubleshooting a complex dinosaur model (Rhomaleosaurus) for use in Unity. The goal was to create a functional animated asset for an AR scene using Unity and A-Frame/WebXR. The project included Blender rigging, weight painting, Unity import, prefab setup, and runtime animation testing — all under the constraint of using a keyboard and tablet without a mouse.
+
+The intention behind this write-up is transparency: to capture the full process, including failures, decision-making, and lessons learned.
+
+🧱 Initial Setup in Blender
+Scene Content
+
+The Rhomaleosaurus model was composed of several distinct mesh objects:
+
+Object_7 (the main dinosaur body)
+
+Object_9 (tongue)
+
+Eyes
+
+Upper Teeth
+
+Lower Jaw
+
+PolySurface
+
+Misc. tetrahedral and triangle-shaped icons (used to differentiate grouped vs. ungrouped mesh)
+
+Objective
+
+Combine all necessary parts into one unified mesh, bind the result to the existing armature, and export it as a clean .fbx file that would animate properly in Unity.
+
+🧰 Pre-Rigging Cleanup and Mesh Evaluation
+
+Began by inspecting the Outliner and toggling visibility to identify which items actually contributed to the visible mesh.
+
+Triangular icons represented visible mesh geometry; tetrahedral icons were usually empty objects or unused nodes.
+
+Verified which objects glowed (highlighted in the 3D viewport) when selected. If nothing highlighted, the object was unused or empty and could be hidden or deleted.
+
+🔗 Merging Mesh Components
+
+Pressed A to select all geometry in Object Mode.
+
+Used Ctrl + J to join all visible, necessary mesh parts (e.g., body, teeth, tongue, eyes) into one object.
+
+Verified the merge was successful by entering Edit Mode and selecting various vertices with the L key to ensure they were part of a unified object.
+
+Hidden or disconnected components (e.g., triangle shapes with no geometry) were ignored or deleted for clarity.
+
+🦴 Parenting to the Armature
+
+Switched to Object Mode and selected the unified mesh first.
+
+Shift-clicked the Armature object (which held all the bones).
+
+Used Object → Parent → With Automatic Weights to bind the mesh to the skeleton.
+
+Confirmed binding by entering Pose Mode and pressing R on bones to test movement.
+
+Observed: the body moved, but eyes and teeth did not follow, despite being joined.
+
+🎯 Diagnosing Binding Issues
+
+Entered Weight Paint Mode and found that parts of the mesh (e.g., eyes, teeth) did not receive proper vertex weights.
+
+Explored Vertex Groups under Object Data Properties → confirmed that joints existed (joint1–joint50), but certain geometry had no weight influence.
+
+Tried Merge by Distance and Transfer Weights, but these didn't resolve the parenting issue for eyes/teeth.
+
+🎭 Alternative Parenting Approaches (Not Fully Successful)
+
+Experimented with selecting individual objects like Eyes, shift-clicking bones, and using Parent → To Bone.
+
+While this made some components follow the armature in hierarchy, animation playback still did not animate the components correctly in Unity.
+
+🧹 Unity Project Cleanup
+
+Deleted old prefabs and .fbx files from the Unity Models_RHOMA folder, including the Rigged subfolder and backups.
+
+Retained only two folders: Legacy (with original .glb) and an empty Rigged folder for fresh imports.
+
+Re-exported the .fbx from Blender using correct settings:
+
+Smoothing: Face
+
+Armature FBX: Root
+
+Applied transforms (Ctrl + A) before exporting
+
+Named export: Rhomaleo_FINAL_Export.fbx
+
+🧪 Import to Unity and Animator Setup
+
+Imported the .fbx into Unity’s Rigged folder.
+
+Created a prefab variant by right-clicking and selecting Create > Prefab Variant.
+
+Created an empty GameObject in the Hierarchy and replaced it with the new prefab.
+
+Connected the animator controller (Rhomaleo_Animator) and verified that the correct animation (swimming and biting) was linked.
+
+However, no animation occurred during Play Mode.
+
+🔍 Animation Debugging in Unity
+
+Confirmed the Animator was assigned and looping.
+
+The avatar appeared assigned and valid, but the mesh did not animate.
+
+Explored reasons:
+
+Missing SkinnedMeshRenderer under Armature
+
+Animation controller might be disconnected from the root bone
+
+No motion in Scene view or Game view
+
+Repeated deletion and reimport of .fbx files, recreated prefab variants, and ensured everything was freshly linked. Still no movement.
+
+🧠 Blender Review & Rebuild
+
+Relaunched the earlier Untitled2.blend file which had proper animation working before.
+
+Parent was reapplied (Ctrl + P → With Automatic Weights) after joining all objects.
+
+Entered Pose Mode and tested movement: the body animated, but eyes and teeth still did not follow.
+
+Entered Weight Paint Mode and verified again: eyes and teeth had no influence from any joints.
+
+🩺 Last-Ditch Repair Strategy (Half Successful)
+
+Joined Eyes, Teeth, and Tongue with Object 7 (main body).
+
+Entered Pose Mode again.
+
+Body animated correctly.
+
+Eyes and teeth remained detached visually but were now technically part of the mesh.
+
+This produced a "Frankenstein" result: animation existed, but the geometry appeared disjointed. The idea to hide or delete the teeth/eyes entirely was raised as a backup plan if no clean solution emerged.
+
+📉 Failed Experiments (Worth Documenting)
+
+Parenting individual meshes after binding failed due to missing weight influence.
+
+Binding to individual bones (e.g., parenting Eyes to joint14) did not result in Unity-visible movement.
+
+Transferring weights via Blender’s Data Transfer modifier produced inconsistent results.
+
+Trying to clean up Unity’s prefab system by moving backup folders sometimes caused missing references.
+
+Unity errors like "Missing Prefab GUID" were persistent but harmless.
+
+Animations visible in Blender didn’t transfer unless exported .fbx had animation checked and contained a valid root bone.
+
+✅ Lessons Learned
+
+Weight painting is crucial — all visible geometry must be influenced by bones to animate.
+
+Joining objects is not enough — verify that they have vertex groups and weights assigned.
+
+Unity only plays what’s rigged and skinned — any geometry not linked via SkinnedMeshRenderer will be static.
+
+Keep old .blend files and .fbx exports — they act as rollback points.
+
+When stuck, rebuild the Unity hierarchy from scratch and reassign the Animator Controller, Avatar, and Animation Clip.
+
+🧠 Reflections
+
+This project was not just a technical exercise — it was a persistence challenge. Animating a dinosaur with disconnected geometry while working mouse-free forced creative thinking, resourcefulness, and serious grit. What began as a simple AR scene evolved into a full pipeline test: Blender → Unity → Animator → Scene Setup.
+
+While not everything behaved as intended (yet), the process forged confidence and deeper understanding of how 3D assets become interactive experiences in XR.

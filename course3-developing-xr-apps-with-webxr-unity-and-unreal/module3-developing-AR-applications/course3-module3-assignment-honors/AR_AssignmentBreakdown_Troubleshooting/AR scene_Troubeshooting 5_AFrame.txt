@@ -1,0 +1,52 @@
+
+🚧 Documenting Failed Approaches & Lessons Learned
+
+While the final project resulted in a successful WebXR and WebAR deployment, several early attempts were unsuccessful. Rather than hide these, I’m documenting them here for full transparency — they represent key learning moments and real-world problem-solving.
+
+🧩 Unity AR Setup – Failed Playback on Mobile
+
+My initial plan was to animate and export the Rhomaleosaurus via Blender → Unity → AR Foundation or WebXR. I successfully rigged and animated the model in Blender and imported it into Unity. However, while the animation played inside the Unity Editor, it failed to play correctly once exported to mobile AR platforms.
+
+The scene was tested on Unity 2022.3, and although the animation was working on desktop preview, the mobile version either:
+
+Did not display the model at all, or
+
+Displayed the model in a frozen, non-animated pose
+
+After attempting multiple workarounds (including legacy animation components, timeline animation, and animator override), I concluded that Unity's animation pipeline added unnecessary complexity for this short AR demo. Combined with build errors and platform-specific issues, Unity was deprioritized in favor of browser-based tools.
+
+🔄 A-Frame with Native AR – Limited iOS Support
+
+The next pivot was toward A-Frame’s experimental support for WebXR and marker-less AR using webxr="optionalFeatures: hit-test". This setup was tested locally using Python’s HTTP server to host the scene and connect via LAN on a mobile device.
+
+Despite correct configuration, I encountered the following issues:
+
+On iPhone Safari, the AR cube icon never appeared
+
+On Android Chrome, the scene attempted to load but lacked spatial anchoring
+
+Firewall issues on my Surface Pro interfered with local server discovery
+
+I realized that iOS Safari requires .usdz files for native AR Quick Look, and A-Frame does not support .usdz out of the box. My model was in .glb format, and attempts to convert to .usdz were either unsuccessful or stripped the animation.
+
+This made it clear that A-Frame alone was not a practical option for cross-platform WebAR deployment — at least without heavier custom coding or plugins.
+
+🌐 Hosting & IP Configuration Struggles
+
+While testing A-Frame AR locally, I encountered long page loading times and multiple "Site can't be reached" errors when using my computer's IP address to access from my phone. This led to time-consuming troubleshooting:
+
+Verifying firewall settings
+
+Ensuring Python server was open and running
+
+Checking if the port was accessible from LAN
+
+Switching between browsers (Safari, Chrome) and devices
+
+Ultimately, this confirmed that local testing for WebAR requires a clean and open network environment, and even then, browser compatibility remains an issue — particularly on iOS devices.
+
+🧠 Takeaway: Pivot with Purpose
+
+These failed approaches weren’t wasted — each one helped clarify the limitations of specific toolchains and taught me how to adapt quickly. In the end, switching to MyWebAR provided a fast, reliable way to deploy a fully animated, marker-less WebAR scene that worked across devices with no app required.
+
+Had I not explored Unity and A-Frame first, I wouldn’t have known what to optimize, what to avoid, and what truly worked for cross-platform XR.

@@ -1,0 +1,107 @@
+
+🧱 Failed Attempts: Unity Animation & AR Scene Troubleshooting (Transparency Log)
+
+This section outlines every key misstep, bug, or error encountered while trying to animate and display the Rhomaleosaurus model in Unity for AR deployment. It highlights the rigorous effort behind the scenes and is meant to provide full transparency to future collaborators and employers.
+
+❌ Attempt #1: Basic Animator Controller Setup
+
+The swim animation clip Object_4|SwimmingBiting was correctly detected in the model import settings. A new animator controller (DinoSwim_Controller) was created and assigned to the model prefab. Entry node transitioned into the swim clip.
+
+What failed:
+No animation played in the Scene or Game views. The model remained frozen.
+
+Debug steps tried:
+
+Double-checked avatar was set to Dino_SPOOKY_SKELETONAvatar
+
+Confirmed controller assignment in Inspector
+
+Verified the animation was set to loop and had a visible timeline
+
+Still no movement.
+
+❌ Attempt #2: Rig Reimport and Avatar Matching
+
+Deleted and reimported the FBX file multiple times, confirming the Rig tab was set to Generic, with the correct root node (Armature) and that Unity created an avatar from the model. The animation preview worked inside the import inspector.
+
+What failed:
+In Scene/Game mode, animation still didn’t trigger. No errors shown — just silence.
+
+❌ Attempt #3: Assigning Animation Clip Manually
+
+Tried dragging the Object_4|SwimmingBiting animation clip directly onto the Armature object in the hierarchy.
+
+What failed:
+Unity did not permit the drag-and-drop onto Armature. Even adding it via Animation window resulted in no playback.
+
+❌ Attempt #4: Clip Is Recognized but Still Won’t Play
+
+The Animator window showed a valid Entry → Swim transition. The controller was recognized. The clip was clearly present: 537 curves, 53 positions, 144 streams — all data visible.
+
+What failed:
+Despite all of this, the scene was static. The animation preview played in the FBX import tab but not in live playback.
+
+❌ Attempt #5: Lighting and Camera Debugging
+
+Suspected the Dino was animating, just not visible. Rotated the main camera, repositioned lighting, and confirmed shadow settings.
+
+What failed:
+Nothing changed. Dino remained still. There was no visual indication of the animation running behind the scenes.
+
+❌ Attempt #6: Exporting and Replacing Prefabs
+
+Created multiple prefab variants of the dino with and without teeth and eyes. Deleted and replaced them in the scene hierarchy. Tried both prefab unpacking and nested prefab workflows.
+
+What failed:
+Prefabs showed no improvement. Teeth/eyes remained misaligned, and animation still didn’t trigger.
+
+❌ Attempt #7: Trying a Different Unity Version
+
+Initially, the model had worked in Unity 6000 (one time). Exported the project and opened it in Unity 2022.3 LTS for stability. All assets re-imported. Animation clip was detected. Controller reassigned.
+
+What failed:
+Again, animation didn’t play. Unity 2022.3 behaved more consistently but didn’t resolve the root issue. Recreating the setup step-by-step didn’t bring the Dino back to life.
+
+❌ Attempt #8: Considered MP4 Video Import
+
+As a fallback, considered importing the .mp4 video of the Dino swimming from a Unity Recorder capture.
+
+What failed:
+This approach worked visually, but wouldn't allow material changes, teeth/eye removal, or interactive AR scene logic. It was not an immersive solution — more of a flat video projection, not usable for this prototype’s goals.
+
+❌ The Phantom Swim Mystery
+
+One of the most confusing failures: the Dino swim animation did work once during an earlier project phase. But after closing and reopening Unity, the same setup refused to animate ever again. All backups, FBX exports, and prefab versions were identical.
+
+What failed:
+No explanation could be found for this inconsistency. Nothing in the Unity Editor gave errors. Even enabling debug logs didn’t show issues.
+
+🧠 Final Realization
+
+After hours of testing and double-checking, it became clear that the issue wasn’t with the steps — but likely Unity's animation system silently rejecting the animation under the hood. Whether it was import bugs, version mismatch, root motion confusion, or prefab corruption, the conclusion was simple: Unity wasn’t reliable enough for this use case with this model.
+
+✅ Pivot to A-Frame
+
+The exact same .glb model loaded perfectly in A-Frame.
+
+No script needed.
+
+No Animator Controller.
+
+No failed prefabs.
+
+Animation played instantly in the browser.
+
+🧾 Summary
+
+This documentation is left intact not just as a log of “what didn’t work,” but to demonstrate:
+
+Technical diligence and persistence
+
+Clear reasoning behind tech stack pivot
+
+Respect for time, scope, and project goals
+
+Commitment to transparency and open problem-solving
+
+Failure is not the opposite of success. It's the scaffolding that helped us reach the right solution: A-Frame for AR.

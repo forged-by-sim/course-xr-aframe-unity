@@ -1,0 +1,105 @@
+
+❌ Unity Troubleshooting Log: Failed Attempts & Lessons Learned
+
+This section outlines all the unsuccessful or problematic attempts made when trying to animate and rig the Rhomaleosaurus model (especially the eyes and teeth) in Unity. These notes explain why certain decisions—like switching to A‑Frame for the AR scene—were made.
+
+1. 🦷 Eyes and Teeth Not Attached in Unity
+
+Issue:
+Upon importing the .fbx model, the eyes and teeth appeared as separate objects and did not animate with the body.
+
+Root Cause:
+The eyes and teeth were not rigged or weight-painted to the armature in Blender. Even though they were part of the .fbx export, Unity saw them as independent mesh objects.
+
+Failed Fix Attempts:
+
+Dragging and dropping Dino_Skin_Mat directly onto each eye/teeth mesh in the Project folder (instead of Hierarchy).
+
+Attempting to parent the meshes in Unity alone without rigging in Blender.
+
+Reapplying animations and hoping Unity would "reconnect" bones (it didn’t).
+
+Replacing prefabs and using "Override" features in Unity Inspector.
+
+Lesson Learned:
+Proper rigging must be handled in Blender—Unity cannot correct poor bone/vertex group associations post-export.
+
+2. 🧠 Model Rotation / Bone Twist in Unity
+
+Issue:
+Rigged models would import and immediately rotate incorrectly in Unity, with some bones distorted or axes flipped.
+
+Root Cause:
+Blender's default Z-up axis conflicts with Unity’s Y-up system. Armature and mesh orientation needed to be corrected before export.
+
+Failed Fix Attempts:
+
+Manually rotating the prefab in Unity.
+
+Applying rotation to only the armature, not the mesh.
+
+Exporting without applying transforms (Ctrl + A → Apply All Transforms).
+
+Lesson Learned:
+Always apply rotation, scale, and location in Blender before export. Use Ctrl + A → Apply All Transforms on mesh and armature.
+
+3. ⚙️ Rig/Animation Worked Once—Then Broke
+
+Issue:
+One exported .fbx file from Blender played the swimming animation perfectly in Unity (via Unity 6000 test build)—but later exports stopped working.
+
+Root Cause:
+It was unclear whether it was due to Unity version mismatch, animation override errors, or improper reimporting of the .fbx.
+
+Failed Fix Attempts:
+
+Opening Unity 2022.3 and re-importing the working .fbx
+
+Using the same import settings
+
+Creating new Animator Controllers and dragging in old animations
+
+Lesson Learned:
+Keep a working Unity version fixed and documented. If something unexpectedly works, clone the project immediately before making changes.
+
+4. 🧪 Orbit Controls in Unity Not Working for AR
+
+Issue:
+The AR version of the model needed rotation or orbit-style camera control, but Unity’s built-in orbit camera scripts didn’t behave well.
+
+Failed Fix Attempts:
+
+Using Unity's standard OrbitCamera.cs
+
+Adjusting camera anchor via script
+
+Importing orbit control packages that conflicted with AR packages
+
+Lesson Learned:
+Unity’s AR Foundation camera stack requires custom controls or the use of simpler platforms like A-Frame for WebXR, which handles orbiting more fluidly.
+
+5. 🔄 Drag-and-Drop Prefab Parenting Confusion
+
+Issue:
+Trying to "fix" prefab variants by dragging and replacing them in the Hierarchy led to broken references and unexpected prefab renaming.
+
+Failed Fix Attempts:
+
+Dragging into Rhomaleo_Instance then replacing prefab → led to Rhomeo_Weighted_Unity_FINAL_FIXED confusion
+
+Rebuilding prefab from scene → duplicate references and import errors
+
+Lesson Learned:
+Name and structure your prefabs intentionally in Unity. Avoid deeply nested prefab replacement. Always backup before replacing prefab roots.
+
+🧭 Why A-Frame Was Chosen for AR Scene
+
+Due to the Unity rigging/animation inconsistencies and time constraints, A-Frame provided:
+
+Faster setup for stable AR display of the Rhomaleosaurus
+
+No dependency on Unity versions or Animator Controllers
+
+Orbit viewer prebuilt with JavaScript support
+
+This decision was strategic, not a shortcut. The A-Frame solution ensured interactivity, portability, and reliability across devices without wrestling with Unity AR build bugs.

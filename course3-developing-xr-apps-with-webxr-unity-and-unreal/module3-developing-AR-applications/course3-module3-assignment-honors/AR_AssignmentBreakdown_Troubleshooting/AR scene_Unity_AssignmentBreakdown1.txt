@@ -1,0 +1,139 @@
+
+🦖 Rigging Detached Eyes & Teeth to Armature in Blender (and Finalizing in Unity)
+
+This tutorial documents the full process of fixing detached mesh parts—in this case, the eyes and teeth of the Rhomaleosaurus model—in Blender and getting them fully integrated and functional in Unity. The goal was to ensure that all components (body, eyes, and teeth) move correctly with the armature during animation.
+
+🧩 Problem Overview
+
+When importing the rigged .fbx model into Unity, the body mesh moved as expected during animations—but the eyes and teeth remained static and separated. Although they were part of the .fbx file, they were not rigged to the skeleton and thus did not deform or animate with the rest of the body.
+
+✅ Final Objective
+
+Bind the eyes and teeth to the same armature controlling the Rhomaleosaurus body.
+
+Ensure that everything deforms correctly during animation in Unity.
+
+Clean up unnecessary scripts and materials for clarity and maintainability.
+
+🛠️ Tools Used
+
+Blender 4.5.3 LTS
+
+Unity 6.2 (2022.3.9f1) – AR_Rhomaleosaurus_Scene
+
+.glb and .fbx model exports from Blender
+
+GitHub Desktop for version tracking
+
+🧵 Preparation & Cleanup in Unity
+
+Before tackling Blender:
+
+Deleted redundant elements in Unity:
+
+Debugging scripts
+
+Temporary materials (e.g., DebugDinoMaterial)
+
+Empty GameObjects from testing
+
+Saved stable copies of the Unity project and model files on external USB + hard drive.
+
+Confirmed that the main .glb model still displayed properly and that the AR scene was working.
+
+🐉 Step-by-Step Fix in Blender: Parenting Eyes & Teeth to Armature
+1. Open the Model in Blender
+
+Imported the model .fbx that includes eyes, teeth, and the rigged body.
+
+Verified mesh structure and checked for detached parts.
+
+2. Set Up for Parenting
+
+Enabled X-Ray / In Front for bones:
+
+Right panel → Armature → Viewport Display → Enable "In Front"
+
+Switched to Wireframe View by pressing Z and selecting “Wireframe”
+
+Used the top-down view (numpad 7 or clicked Z-axis in viewport).
+
+3. Select the Objects
+
+Selected:
+
+First: Eyes mesh
+
+Then: Teeth mesh
+
+Then: Body mesh
+
+Finally: the Armature (with Shift + Click)
+
+Ensured the Armature was the last selection (highlighted in light orange/blue)
+
+4. Parent with Automatic Weights
+
+Pressed Ctrl + P → Chose "With Automatic Weights"
+
+Blender bound all selected meshes to the armature’s bones.
+
+Repeated step in case of error or no response.
+
+5. Verify Weight Groups
+
+Selected body in Object Mode → switched to Object Data Properties tab.
+
+Checked that bones (e.g., joint29, joint33, etc.) appeared under Vertex Groups.
+
+🔁 Testing & Export
+Test in Blender:
+
+Switched to Pose Mode for the Armature.
+
+Pressed R to rotate a bone—confirmed the whole body (including eyes and teeth) deformed properly.
+
+Success! No separation.
+
+Export:
+
+Exported the entire model as .fbx with Armature + Mesh selected.
+
+Imported into Unity for final animation test.
+
+🎨 Final Touches in Unity
+
+Created and applied new materials:
+
+Dino_Skin_Mat → for body mesh
+
+Eyes_Mat → pure black for eyes
+
+Teeth_Mat → light off-white for teeth
+
+Applied materials correctly:
+
+Directly onto the GameObject in the Hierarchy, not just the Project folder.
+
+Ensured Unity applied materials to children of the armature correctly.
+
+Ran animation:
+
+Success! Everything (eyes, teeth, body) now animated in sync.
+
+🧼 Cleanup Tips
+
+Remove unused materials or scripts to keep the project clean.
+
+Save a backup of your working .blend and .fbx files.
+
+Consider naming key files with versioning: e.g., Rhomaleo_Animated_Final_Rigged.fbx
+
+🗂️ Folder Notes
+
+Models_RHOMA/Legacy/ → archived versions of .glb files
+
+Models_RHOMA/Rigged/ → current working .fbx files
+
+Materials_RHOMA/ → Dino_Skin_Mat, Eyes_Mat, Teeth_Mat
+
