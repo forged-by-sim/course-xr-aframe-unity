@@ -1,0 +1,299 @@
+🛑 Failed Attempts & Debugging Notes (Unity / A-Frame)
+
+A transparent log of all errors, false starts, and problems encountered during the Rhomaleosaurus WebXR prototype.
+
+This section documents every major issue encountered while building the interactive Rhomaleosaurus viewer in A-Frame — including model failures, invisible objects, CORS errors, scaling bugs, and broken lighting. These notes serve as a technical “paper trail” for hiring managers and future collaborators to see how problems were diagnosed and solved.
+
+1. Model Invisible in Scene (A-Frame)
+
+The very first issue was that the Rhomaleosaurus model simply never appeared, even though:
+
+The red cube appeared,
+
+The grey plane appeared,
+
+The scene rendered normally,
+
+And there were no syntax errors.
+
+Attempts made:
+
+Adjusted model scale from extremely small values to extremely large ones.
+
+Moved the model closer and farther on all axes.
+
+Rotated the model in multiple directions.
+
+Toggled visible on and off.
+
+Rewrote the gltf-model path.
+
+Tried .gltf and .glb versions of the model.
+
+Used lighting adjustments to see if the model was lost in darkness.
+
+Checked A-Frame Inspector to confirm the entity existed.
+
+Outcome:
+No model appeared. This was the first sign that the model was not being loaded at all.
+
+2. File Dragging Behaving Incorrectly
+
+When attempting to drag .glb files into Chrome for testing, the browser simply downloaded the file again instead of previewing it.
+
+Repeated attempts:
+
+Dragging into a new Chrome tab,
+
+Dragging into an existing tab,
+
+Trying Edge,
+
+Trying Firefox.
+
+Outcome:
+All browsers downloaded the file instead of displaying it. This suggested Windows did not have proper MIME handling for .glb.
+
+3. Opening the GLB in Chrome Failed
+
+Double-clicking the .glb file:
+
+Caused Windows to ask which application to open it with,
+
+Or opened a blank tab,
+
+Or triggered a download.
+
+Outcome:
+Could not confirm the model’s integrity via the browser.
+
+4. Flat Rhomaleosaurus Fossil Model
+
+The original Rhomaleosaurus model from Google Arts & Culture was a flat fossil slab — not a full 3D creature.
+This made it unusable for animation or VR placement.
+
+Symptoms:
+
+“Invisible” appearance unless seen at the exact right angle,
+
+Lighting could not cast shadows or define depth,
+
+Material looked like a scanned photograph,
+
+Imported mesh showed almost no thickness.
+
+Attempts:
+
+Scaling in all directions,
+
+Rotating to find a “depth” angle,
+
+Increasing lighting intensity.
+
+Outcome:
+Model was not appropriate for VR animation — it was 2D masquerading as 3D.
+
+5. A-Frame Inspector Showing No Geometry
+
+When opening the inspector, the a-entity containing the model appeared in the scene graph, but:
+
+It had no visible mesh,
+
+No children nodes,
+
+No LOD groups,
+
+No bounding box.
+
+Attempts:
+
+Selecting the node,
+
+Applying transformations live,
+
+Toggling wireframe mode,
+
+Adding debug spheres and axes.
+
+Outcome:
+Still no visible geometry. This indicated the loader never successfully loaded the model file.
+
+6. CORS Policy Blocking GLB Files
+
+Once the browser console was opened, the first major error appeared:
+
+“Access to fetch at file:///…/pistosaur.glb from origin null has been blocked by CORS policy.”
+
+This error explained everything:
+
+A-Frame cannot load local files via file://.
+
+A local or hosted server is required.
+
+Attempts before discovering the root cause:
+
+Renaming file paths,
+
+Placing models in different folders,
+
+Copy-pasting code from documentation,
+
+Rewriting the gltf-model syntax,
+
+Adding url() wrappers.
+
+Outcome:
+Issue persisted until a local server was used.
+
+7. Running Without a Local Server
+
+Before the Python server fix, every model load attempt resulted in:
+
+Silent failures,
+
+Invisible geometry,
+
+Missing animation states.
+
+Attempts included:
+
+Refreshing the page,
+
+Clearing cache,
+
+Restarting Chrome,
+
+Moving the project folder to Desktop / OneDrive / Documents,
+
+Renaming folders to avoid spaces.
+
+Outcome:
+Completely resolved after starting a Python server.
+
+8. Model Appearing as a Tiny Speck
+
+After CORS was fixed, the first visible version of the model appeared as a microscopic dot that wouldn’t disappear even when toggling visibility. This caused confusion because:
+
+It appeared like a ghost entity,
+
+It looked detached from the model,
+
+It wasn’t affected by scale changes.
+
+Attempts:
+
+Scaling from 1 → 100 → 1,000 → 10,000 → 100,000,
+
+Moving model in multiple directions,
+
+Checking material overrides,
+
+Resetting rotation.
+
+Outcome:
+This “speck” was actually a bounding sphere or particle artifact — not the dinosaur itself.
+
+9. Incorrect Pivot Point and Origin
+
+Even after the model became visible, it spawned in:
+
+A location far behind the camera,
+
+A different coordinate space than the default origin.
+
+Attempts:
+
+Moving position to (0, 0, 0),
+
+Raising Y position,
+
+Pulling it forward with negative Z values,
+
+Nudging it left/right to find the body.
+
+Outcome:
+Correct position found:
+position="0 2 -0.1".
+
+10. Model Facing Away From the Camera
+
+When the dinosaur finally appeared, it was swimming directly away from the viewer.
+
+Attempts:
+
+Rotations of 90°, 180°, 270°,
+
+Flipping axes,
+
+Inverting directions.
+
+Outcome:
+Rotation was corrected with:
+rotation="0 180 0".
+
+11. Animation Not Playing Initially
+
+The model appeared, but it was completely frozen despite being labeled “animated”.
+
+Attempts:
+
+Adding A-Frame animations,
+
+Applying <a-animation> tags,
+
+Trying idle movement manually,
+
+Checking Sketchfab export settings.
+
+Outcome:
+Real reason: A-Frame does not auto-play embedded GLTF animations.
+Fix: adding animation-mixer to the entity.
+
+12. Orbit Controls Not Working Initially
+
+Early attempts using orbit controls produced:
+
+No camera rotation,
+
+Sudden snapping,
+
+Camera drifting through the ground.
+
+Cause:
+
+Missing aframe-extras script,
+
+Incorrect rig setup,
+
+Wrong camera nesting.
+
+Attempts:
+
+Multiple camera entity configurations,
+
+Wrapping the camera inside another entity,
+
+Providing a target that didn't exist yet.
+
+Outcome:
+Resolved after importing aframe-extras and targeting #rhomaleosaurus.
+
+✔️ Conclusion
+
+These failed attempts were not setbacks—they were necessary steps in understanding how A-Frame loads models, handles animation, enforces security policies, and interprets coordinate systems.
+
+The completed WebXR scene exists because of these errors:
+
+CORS issues taught proper server setup.
+
+Invisible models taught debugging with inspector tools.
+
+Flat fossil models taught asset selection.
+
+Scaling and positioning failures taught world-space reasoning.
+
+Animation issues taught GLTF workflows.
+
+Orbit camera failures taught camera rigging and input control.
+
+This transparency is what transforms a student project into a professional XR case study.

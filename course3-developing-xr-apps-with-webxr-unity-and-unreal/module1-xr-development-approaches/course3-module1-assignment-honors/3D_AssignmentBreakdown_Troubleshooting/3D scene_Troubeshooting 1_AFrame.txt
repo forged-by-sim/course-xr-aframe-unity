@@ -1,0 +1,85 @@
+🛠️ Development Hurdles & Lessons Learned
+
+Documenting Failures from Unity, A-Frame, and WebXR
+
+This section outlines several technical setbacks encountered throughout the XR project lifecycle—especially in Unity and A-Frame—and how each one was addressed or strategically bypassed. These are not setbacks, but documented learning milestones that reflect the iterative nature of real-world XR development.
+
+❌ Unity: Animation & Rigging Failures
+
+Goal: Animate the Rhomaleosaurus in Unity so it could swim through an underwater scene.
+
+Issue: Despite repeated attempts with Unity Animator, the rigged model would not play the swim animation a second time after the initial test scene.
+
+What Was Tried:
+
+Rebuilding the prefab
+
+Reconnecting animation controllers
+
+Baking the animation in Blender before exporting as .fbx
+
+Adjusting timeline tracks in Unity
+
+Outcome: Unity repeatedly failed to recognize the animation triggers on subsequent prefab instantiation. It worked in a single test but not in final deployment.
+
+Decision: After multiple rebuilds, the Unity pipeline was abandoned for this animation, and the project pivoted to A-Frame/WebXR, where static models could simulate movement with other interaction methods.
+
+❌ Unity Recorder Not Appearing
+
+Issue: Unity Recorder failed to appear under Window → General → Recorder despite being installed.
+
+Resolution: Realized the Recorder only shows up when not in Play mode. Restarted Unity and reopened the scene in edit mode to access the Recorder window successfully.
+
+❌ A-Frame Orbit Controls Conflict
+
+Goal: Enable orbit controls in A-Frame for desktop-based camera manipulation.
+
+Issue: The default orbit controls wouldn’t apply correctly to glTF models. Additionally, model-viewer.js used by A-Frame’s Triceratops example depended on several modular files that had to be manually added and stitched together.
+
+Outcome: Instead of custom orbit logic, I kept gaze-based camera positioning only and relied on scene layout to control user view angle.
+
+❌ AR.js Markerless Stability
+
+Issue: While prototyping AR with A-Frame and AR.js, markerless AR placement on mobile browsers became unreliable. The model floated above the ground or appeared off-center despite correct anchors.
+
+Debug Attempts:
+
+Calibrated cameraPosition and light direction
+
+Switched between gps-camera and arjs-anchor
+
+Final Decision: The project retained the markerless setup, but anchoring was simplified to work best with flat surfaces (e.g., desk/floor), and toggles were minimal to prevent further UI desync.
+
+❌ File Hosting and Asset Loading
+
+Issue: Hosting 3D assets externally (e.g., on Glitch or GitHub Pages) introduced CORS errors when loading .glb or .fbx models into A-Frame.
+
+What Was Tried:
+
+Using Dropbox public links (deprecated)
+
+GitHub raw URLs (blocked due to MIME type mismatches)
+
+Solution: Models were bundled into local project folders during development and embedded directly via relative paths. Remote hosting was deprioritized in favor of stable offline builds.
+
+❌ Sketchfab Model Import Challenges
+
+Issue: Some Rhomaleosaurus models downloaded from Sketchfab as .glb appeared scaled incorrectly or distorted in A-Frame.
+
+Troubleshooting:
+
+Inspected in 3D Viewer and Blender
+
+Re-exported from Blender with scale applied (Ctrl+A → Apply Scale)
+
+Lesson: Always inspect third-party models before import and clean up transforms within Blender to avoid invisible or broken assets in WebXR.
+
+❌ Exporting GitHub Portfolio Media
+
+Issue: Large .mp4 screen captures (over 50 MB) from Unity and A-Frame preview sessions couldn’t be uploaded directly to GitHub or Coursera due to file size caps.
+
+Solution: Videos were trimmed under 2 minutes using handbrake and exported at 720p to reduce size. When needed, fallback image sequences or animated GIFs were created to demonstrate interaction steps without exceeding file limits.
+
+💡 Key Takeaway
+
+These failed attempts were not wasted effort—they provided critical technical depth, platform comparisons, and architectural insights. They also led to a design shift toward simplicity and stability, ultimately producing a WebXR experience that worked reliably across devices, which is essential in real-world XR deployment.

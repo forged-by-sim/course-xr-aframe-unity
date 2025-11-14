@@ -1,0 +1,87 @@
+🧠 XR MOOC Course 3 Honors Track: Storyboards, 3D Scene, VR Scene, and AR Scene
+
+Platform: A-Frame (WebXR) | Theme: Rhomaleosaurus – Museum to Ocean
+
+🎯 Project Theme: From Fossil to Life – An XR Learning Expedition
+
+This project reimagines a museum experience through extended reality by transforming a Rhomaleosaurus fossil exhibit into an immersive, interactive learning expedition. Using WebXR and A-Frame, I built a progression from static 3D scenes to immersive VR and AR interactions. Each honors assignment builds on the previous one, showcasing iterative scene design, layered interactivity, and spatial storytelling grounded in educational goals.
+
+🎮 Assignment 1: 3D Scene – “Fossil to Sea Life”
+
+Goal: Create a 3D prototype of an XR scene using primitive objects and sketches as references.
+
+Design Process:
+
+I began by sketching a scene of a museum wall with a mounted Rhomaleosaurus skeleton.
+
+Using A-Frame, I blocked out the layout with 3D primitives: a rectangular skeleton, a pedestal, and a backdrop wall.
+
+I tested various camera angles to find the ideal perspective for the user — directly in front of the fossil.
+
+Materials were added for visual polish (stone texture for the fossil, neutral lighting).
+
+While no interaction was implemented in this step, I prepared the scene for layering interactivity in future iterations.
+
+Reflection:
+
+Learning to manipulate primitives in A-Frame helped me internalize concepts like position, scale, and rotation. The most challenging part was aligning everything in 3D space without a traditional scene view.
+
+🥽 Assignment 2: VR Scene – “Bring the Rhomaleosaurus to Life”
+
+Goal: Extend the 3D scene into VR, add user perspective, depth, and immersion.
+
+Key Interactions:
+
+Introduced a gaze-triggered “Bring to Life” button positioned in front of the fossil.
+
+When triggered, the fossil dissolves and a 3D animated Rhomaleosaurus swims into view across a 360° ocean backdrop.
+
+Floating info overlays appear when the user gazes at specific parts of the creature (fins, head), delivering modular content.
+
+An audio narration toggle provides optional educational commentary.
+
+Reflection:
+
+This assignment expanded the scene into layers of immersion. Implementing gaze-based interaction required careful camera rig placement and intuitive UX flow. I focused on minimizing cognitive load by introducing progressive disclosure—revealing information only when the user shows interest.
+
+📱 Assignment 3: AR Scene – “Sea Dragon in Your Space”
+
+Goal: Adapt the VR scene into an AR experience using marker-less AR via A-Frame and mobile testing.
+
+Key Interactions:
+
+Used marker-less AR to place the Rhomaleosaurus in the user’s real-world environment (e.g., tabletop or floor).
+
+Implemented tap interaction: tapping the creature toggles between “Creature Facts” and “Environment Facts.”
+
+Audio and environmental lighting were adapted to better blend with the user’s physical space.
+
+The AR version mirrors the VR concept but emphasizes contextual blending over immersion.
+
+Reflection:
+
+The AR implementation was more technically constrained than VR. Rendering and placement using AR.js required mobile browser testing, and interactions had to be intuitive and minimal. That said, it created a powerful juxtaposition between ancient life and modern environments.
+
+🔁 Design Evolution & Takeaways
+
+Throughout the three honors assignments, the core idea evolved from a passive fossil exhibit into a multi-modal learning system that users can experience in VR and AR.
+
+Key Innovations:
+
+Interactive Layer System: Floating labels, toggles, and narration features allow users to control the pace and depth of their learning.
+
+Gaze-Based UI: Minimal and immersive interactions grounded in user attention.
+
+Modular Deployment: Scene works across both VR and AR contexts with shared assets and design logic.
+
+💡 Reflection & Recommendations
+
+This project aligns with course lectures on interaction design, affordances, and design ethics (Dr. Nebeling, Weeks 2–4). The work reflects principles like:
+
+Autonomy: Users decide what and when to explore.
+
+Transparency: Info overlays and toggles clearly signal interactivity.
+
+Cognitive Load Reduction: Designed with minimal UI and layered content to avoid overwhelming users.
+
+If revisiting this project, I would explore hand-tracking or spatial audio for additional immersion.
