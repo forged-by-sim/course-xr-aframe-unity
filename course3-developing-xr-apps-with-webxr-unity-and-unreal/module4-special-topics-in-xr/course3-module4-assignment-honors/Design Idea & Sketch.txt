@@ -1,0 +1,18 @@
+Design Idea & Sketch
+
+In a few sentences, describe the main idea and inspiration for your 3D/VR/AR scene.
+
+If possible, share the sketch based on which you modelled your work.
+
+Even if you just submit a 3D scene without particular adaptations for AR/VR, make it clear whether you have been designing for AR or VR.
+
+Design Idea & Sketch 
+
+The idea was to create a living reconstruction of the Rhomaleosaurus, a prehistoric marine reptile, and place it in both virtual and real-world settings. Inspired by museum exhibits and natural history documentaries, I wanted users to experience the creature as if it were swimming through space, which was either inside a virtual viewer or anchored in their physical environment.
+
+This scene was specifically designed for marker-less AR, allowing viewers to walk around the animated model using just a mobile device. A rough sketch guided the model’s pose and intended viewing angles.
+
+﻿
+
+   
+

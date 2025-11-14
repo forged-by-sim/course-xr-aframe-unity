@@ -50,8 +50,8 @@ Improved view: Show your proposed design with floating info labels, gaze-based s
 
 
 
-![image](Fossil Wall Display.png)
+![Assignment 1](Fossil Wall Display.png)
 
-![image](Swimming Rhomaleosaurus.png)
+![Assignment 1](Swimming Rhomaleosaurus.png)
 
-![image](Rhomaleosaurus VR Interface Redesign.png)
+![Assignment 1](Rhomaleosaurus VR Interface Redesign.png)

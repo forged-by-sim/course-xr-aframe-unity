@@ -25,10 +25,14 @@ Overall, I consider this version complete for the assignment milestone but will 
 
 
 
-![image](Rhomaleosaurus Sketch.png)
 
-![image](Rhomaleosaurus_right.png)
 
-![image](Rhomaleosarus_left.png) 
 
-![image](Rhomaleosaurus_front.png) 
+
+![Assignment 1](Rhomaleosaurus_Sketch.png)
+
+![Assignment 1](Rhomaleosaurus_right.png)
+
+![Assignment 1](Rhomaleosarus_left.png) 
+
+![Assignment 1](Rhomaleosaurus_front.png) 

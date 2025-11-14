@@ -1,0 +1,54 @@
+MyWebAR (at mywebar.com) is a very capable WebAR platform, and it could be a good match for what you’re trying to do (placing your 3D model in AR on your device). Here’s a breakdown of how it works + what to check — and how it might fit your setup (Surface Pro 7 + Windows + browser)
+
+✅ What MyWebAR offers
+
+It’s a “no‑code” / drag‑and‑drop AR editor: You can upload images, videos, 3D models, and design the AR scene via web interface. 
+MyWebAR by DEVAR
++2
+MyWebAR
++2
+
+It supports many types of AR/tracking: image tracking, curved image tracking, world tracking (placing on flat surface) etc. 
+MyWebAR
++1
+
+It claims to be cross‑platform: The site says experiences built on MyWebAR are available in web browsers on iOS, Android, ChromeOS, Windows, MacOS, Linux. 
+MyWebAR by DEVAR
+
+It supports uploading your own 3D models (GLB/others) for use in projects. For example: “Once you’ve added a 3D model to your scene …” 
+MyWebAR
++1
+
+⚠️ Things to check / possible limitations for your scenario
+
+Since your target device is a Surface Pro 7 (Windows) and you want to place a 3D model and view it in AR/floor placement, here are things to watch:
+
+Surface Pro 7’s hardware & camera/tracking support: Even though the platform supports Windows “in browser”, the quality of world‑tracking (plane detection) depends on the device. Windows devices may have less robust AR support than dedicated AR/VR headsets or recent phones.
+
+WebAR vs native app: MyWebAR works via web browser (no app required) which is excellent. But you’ll want to test how well the tracking (floor placement) works in your browser on the Surface.
+
+Uploading / project setup: Ensure you select the correct “experience type” in MyWebAR editor (i.e., a “world tracking” or “real‑world surface placement” project) rather than just “image marker” if you want floor/table placement.
+
+Free vs paid: The free plan may have limitations (number of views, storage, features) so check that your 3D model size & usage fits the free tier or be prepared to upgrade. 
+MyWebAR
++1
+
+Model optimization: Your 3D model (from A‑Frame) may need to be optimized (file size, textures) so it loads smoothly in WebAR via browser on Windows device.
+
+🧭 How you could use MyWebAR for your model (step‑by‑step)
+
+Here’s a suggested workflow using MyWebAR with your existing model:
+
+1. Sign up / log in to MyWebAR. 
+
+2. Create a new project. Choose an experience type like “AR in the Real World” or “World Tracking” (so you can place the model on a flat surface). 
+
+3. Upload your 3D model (e.g., the .glb of your dinosaur). In the editor’s asset panel, upload “3D model”.
+
+4. Configure placement: In the editor scene, position/scale/rotate your model so it looks good when placed on a surface.
+
+5. Publish the experience. MyWebAR will generate a link or QR code you can open on your device.
+
+6. On your Surface Pro 7, open the link in a compatible browser (Chrome/Edge). Then point the camera to a table/flat surface and see if the model appears & places properly.
+
+7. Test interactions: Rotate around the model, check loading performance, and ensure it behaves as expected.

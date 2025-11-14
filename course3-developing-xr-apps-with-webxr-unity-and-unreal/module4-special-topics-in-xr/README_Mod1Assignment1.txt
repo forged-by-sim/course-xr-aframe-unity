@@ -1,1 +1,0 @@
-![Alt text](XR_MOOR_3_Assignment_1_3D_Scene.pdf) 

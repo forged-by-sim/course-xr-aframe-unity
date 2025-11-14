@@ -1,0 +1,22 @@
+Development Approach and Tools
+
+State which XR platforms and tools you were using and briefly describe your development process and experience with the tools.
+
+What are the key interactions you wanted to implement?
+
+What were some of the design and technical challenges you had?
+
+How close did you get towards your envisioned final AR/VR user experience with your 3D/VR/AR scene?
+
+Development Approach and Tools 
+
+I used Blender for rigging and animating the Rhomaleosaurus model, and initially attempted to deploy it in Unity for AR. Due to limitations with mobile playback, I pivoted to A-Frame (WebXR) for the VR viewer and MyWebAR for the final AR experience.
+
+My goal was to implement a looped swimming animation and allow users to physically walk around the model using marker-less AR. The biggest challenge was achieving cross-platform compatibility while preserving animation playback.
+
+In the end, I was able to fully realize my vision of a lightweight, immersive XR scene accessible on both desktop and mobile browsers.
+
+﻿
+
+    
+

@@ -1,0 +1,57 @@
+Question 1 
+What is the main idea behind procedural generation for VR? Choose one (1).
+==> The system generates content algorithmically, for example, as the user changes their virtual or physical location. 
+
+
+Question 2 
+How does redirected walking enable VR users to travel larger virtual spaces than can fit into the user’s real-world physical space? 
+==> While walking, the user receives unnoticeable visual cues through manipulations of the VR scene, causing the user to compensate for scene motion by redirecting themselves without realizing this. 
+
+
+Question 3
+What are potential benefits of custom VR motion controllers?
+==> Common VR controllers have a generic shape optimized for grip but are lacking the haptic feedback consistent with any virtual objects users may grasp in VR.
+==> Common VR controllers assume able-bodied users but may not be accessible to users with motor impairments.
+
+
+Question 4
+Which steps are required for semantic understanding of the physical world as seen by an AR device? Choose all that apply.
+==> Spatial mapping to create a mesh from the physical world in the form of a dense 3D point cloud
+==> Object recognition to segment and extract objects from the mesh and assign classification labels
+
+
+Question 5
+What are key issues that require advanced techniques to support accessibility? Choose all that apply.
+==> The system needs to perceive the physical world like a human would.
+==> The system needs to describe the world to a user like a human would.
+
+
+Question 6 
+Why is text input a problem in VR/AR applications? Choose all that apply.
+==> Virtual keyboards are usually not very efficient in VR or AR.
+==> Physical keyboards are usually not assumed to be part of the VR/AR setup.
+
+
+Question 7 
+Why are sensing and input still key issues in XR research? Choose all that apply.
+==> Current applications still only have limited understanding of a user’s environment and intent.
+==> Better sensing and input techniques are required to better assist users with impairments.
+
+
+Question 8 
+What makes XR as a research topic particularly difficult? Choose one (1). 
+==> It requires a combination of UX, programming, and research skills that is rare. 
+
+
+Question 9 
+When asking who we are designing for, what would be a better question to ask in research? Choose one (1). 
+==> How can we design with them? 
+
+
+Question 10
+Which of the following are important design ethics questions? Choose all that apply. 
+==> What is the role and responsibility of the XR designer?
+==> How do we hold XR designers and developers accountable?
+==> What happens when users misuse our design for unintended purposes?
+==> What if users can’t tell what’s real and what’s virtual anymore?
+

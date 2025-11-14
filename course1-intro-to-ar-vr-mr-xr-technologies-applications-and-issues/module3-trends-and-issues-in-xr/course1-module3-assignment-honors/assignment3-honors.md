@@ -14,9 +14,16 @@ For designers, the impact could be mitigated by improving real-time feedback suc
 
 
 
-![Alt text](natural photo.JPEG)
 
-![Alt text](IMG_8711.PNG)
 
-![Alt text](IMG_8713.PNG)
 
+
+
+
+![Assignment 3](XR_MOOC_1_Assignment_3_Impact_Analysis.pdf) 
+
+![Assignment 3](Natural Photo_Tridax Daisy.png)
+
+![Assignment 3](SeekbyiNaturalist_Species Name.png)
+
+![Assignment 3](SeekbyiNaturalist_Species Observation.png)

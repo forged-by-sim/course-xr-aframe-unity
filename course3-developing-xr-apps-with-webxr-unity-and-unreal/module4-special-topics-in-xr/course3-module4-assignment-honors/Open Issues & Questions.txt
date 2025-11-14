@@ -1,0 +1,5 @@
+Provide a list of open issues and ask specific questions that you would like to have feedback on regarding your 3D/VR/AR scenes.
+
+Open Issues & Questions 
+
+One open issue was achieving consistent AR playback across platforms, especially between Android (which supported WebAR smoothly) and iOS (which required a different workflow). I’d appreciate feedback on lightweight ways to implement object interaction or toggles in WebAR, and whether others have successfully used A-Frame for marker-less AR. Also, what tools or workflows do you recommend for compressing animated .glb models while retaining smooth performance in mobile AR?  

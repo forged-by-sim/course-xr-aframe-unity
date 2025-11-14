@@ -1,0 +1,44 @@
+You’re already using A-Frame 1.4.2 and a custom model-viewer component setup, which looks great.
+To get the “expand / fullscreen” button like the Triceratops example — without drastically changing anything — you just need to make one small addition.
+
+🧩 Why your current code doesn’t show the expand icon
+
+Right now, your <a-scene> has this:
+
+vr-mode-ui="enabled: false"
+
+
+That line disables the default headset (VR/fullscreen) icon in the lower right corner.
+A-Frame treats that icon as part of the “VR mode UI,” so when you disable it, the expand button disappears too.
+
+✅ The minimal fix (just one attribute)
+
+You can simply remove or change that one attribute to re-enable the built-in expand icon.
+
+Replace this:
+
+vr-mode-ui="enabled: false"
+
+
+With this:
+
+xr-mode-ui="enabled: true"
+
+
+So your <a-scene> tag becomes:
+
+<a-scene
+  renderer="colorManagement: true;"
+  webxr="optionalFeatures: hit-test; requiredFeatures: local-floor;"
+  xr-mode-ui="enabled: true"
+  ar-mode-ui="enabled: true"
+  model-viewer="gltfModel: #rhomaleosaurus; title: Rhomaleosaurus">
+
+
+✅ That’s it.
+A-Frame will automatically show the expand/VR headset icon in the bottom right corner.
+Clicking it will:
+
+Expand the scene to fullscreen on desktop.
+
+Enter VR mode if the browser supports WebXR (and you’re on a headset).

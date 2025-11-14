@@ -1,0 +1,11 @@
+Submit screenshots, photos, or a video of your final 3D/VR/AR scene walking us through your design.
+
+![Assignment 4](Short AR Scene_Dino_Rhomaleosaurus.mp4)
+
+Title
+Short AR Scene_Rhomaleosaurus 
+​
+Caption
+While the VR viewer offered structured framing, I selected the AR version because it brought the Rhomaleosaurus into the user's physical space, which offered immersion, motion, and presence beyond the screen.
+
+![Assignment 4](Short VR Scene_Rhomaleosaurus Viewer_A-Frame.mp4)

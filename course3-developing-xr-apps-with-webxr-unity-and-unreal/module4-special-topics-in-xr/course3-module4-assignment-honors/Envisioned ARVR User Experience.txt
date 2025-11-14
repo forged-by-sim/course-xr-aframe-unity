@@ -1,0 +1,9 @@
+Envisioned AR/VR User Experience
+
+Provide a description of your envisioned final AR/VR user experience.
+
+Summarize the key interactions you wanted to implement in your prototype.
+
+Envisioned AR/VR User Experience 
+
+I envisioned an immersive experience where users could encounter a life-like Rhomaleosaurus either within a virtual museum viewer (VR) or anchored in their real-world space (AR). The key interactions included viewing the animated creature from multiple angles, observing its swimming motion, and engaging with the scene by physically moving around it, which created a sense of presence and natural exploration without the need for controllers or UI.

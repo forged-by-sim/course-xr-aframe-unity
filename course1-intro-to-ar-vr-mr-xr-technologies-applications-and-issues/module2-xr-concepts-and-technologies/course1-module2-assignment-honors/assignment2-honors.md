@@ -28,8 +28,11 @@ Can move around (without paying attention to keeping the marker in view)
 
 
 
-![Alt text](Screenshot (180).png)
 
-![Alt text](Screenshot (181).png)
 
-![Alt text](Screenshot (182).png)
+
+![Assignment 2](Complete Anatomy_Chest Cavity.png) 
+
+![Assignment 2](Complete Anatomy_Upper Structures.png)
+
+![Assignment 2](Complete Anatomy_Heart.png) 
