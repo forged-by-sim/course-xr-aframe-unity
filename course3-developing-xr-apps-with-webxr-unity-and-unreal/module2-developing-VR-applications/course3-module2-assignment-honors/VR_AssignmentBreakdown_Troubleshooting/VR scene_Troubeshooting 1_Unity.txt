@@ -1,0 +1,85 @@
+Here's a documentation of all the failed attempts and errors encountered during this Unity scene session:
+
+❌ Failed Attempts & Troubleshooting Log (Unity & Rigging)
+
+This section documents the key technical hurdles and failed attempts during the development of the Rhomaleosaurus XR Scene in Unity. These logs are preserved for transparency, learning, and to assist future developers working with similar models or pipelines.
+
+🐉 1. Dino Model Not Rendering in Unity Scene
+
+After importing the .glb model into Unity and adding it to the VR_Rhomaleosaurus_Scene, the dinosaur appeared invisible despite existing in the scene hierarchy.
+
+Observed: Wireframe skeleton visible, but no mesh or skin rendering.
+
+Suspected Cause: Missing or improperly applied material.
+
+Failed Attempt: Initially tried applying material directly to the root node (Object_2), which had no mesh renderer, so nothing changed visually.
+
+Resolution: Located the Skinned Mesh Renderer components on Object_7 and Object_9 and manually assigned the Dino_Material to each.
+
+🧱 2. No Drag-and-Drop Functionality in Hierarchy
+
+When attempting to drag Dino_Material from the Project panel onto the model objects in the Hierarchy, Unity would not allow the drop.
+
+Observed: Drag icon appeared but nothing occurred after release.
+
+Failed Attempt: Tried dragging material onto high-level nodes (Object_2 or the prefab), but they lacked renderer components.
+
+Workaround: Manually expanded prefab structure, selected individual mesh objects, and assigned the material via the Inspector panel.
+
+🦴 3. Model Did Not Animate Despite Being Imported as .glb
+
+The .glb model previewed correctly in Windows 3D Viewer (animated swimming cycle), but appeared static in Unity.
+
+Assumption: .glb would include animation data by default.
+
+Reality: Unity did not recognize or import any animation clips from the .glb.
+
+Failed Attempts:
+
+Checked the prefab in Unity for animation clips—none found.
+
+Checked the Inspector for the model import settings—no animation section appeared.
+
+Conclusion: Either the model did not have baked animations, or Unity failed to parse them during import.
+
+🧍 4. Mixamo Auto-Rigger Failure
+
+Attempted to upload the .glb model to Mixamo to auto-rig the Rhomaleosaurus and generate a swim animation.
+
+Error Message:
+
+“Sorry, unable to map your existing skeleton.”
+
+Reason: Mixamo only supports humanoid rigs with upright bipedal posture. It expects clear markers for chin, wrists, elbows, knees, and groin—none of which a prehistoric marine reptile possesses.
+
+Tried Uploading: The .glb directly from Unity project folder.
+
+Reference: Adobe Mixamo documentation explicitly states that non-humanoid skeletons are not supported by the auto-rigger.
+
+💾 5. Scene Not Saving Properly Before Play Mode
+
+Entering Play Mode too early led to scene settings resetting, particularly lighting and fog.
+
+Symptoms:
+
+Ambient light turned completely white.
+
+Fog settings reverted to default.
+
+Scene looked washed out and different from intended mood.
+
+Cause: Unity reloads the domain upon pressing Play, discarding unsaved scene states.
+
+Fix: Always save the scene (Ctrl+S) before entering Play Mode to preserve environmental settings.
+
+🔄 6. No Duplicate Option for Scene Folder
+
+Attempted to duplicate the active scene folder (Scenes > VR_Rhomaleosaurus_Scene) via the Unity Project panel for backup purposes.
+
+Issue: Right-clicking provided no “Duplicate” option.
+
+Suspected Cause: Scene files cannot be duplicated from within Unity if the focus is on the .unity file itself.
+
+Workaround: Use File Explorer outside Unity to copy and rename .unity scene files if needed.
+
+These failed attempts are integral to the problem-solving process in simulation and XR development. Each error pointed to an underlying gap—whether in Unity’s prefab/component structure, import pipeline expectations, or external tool limitations like Mixamo. Keeping these logs not only supports personal growth but also strengthens your technical storytelling and troubleshooting credibility in your portfolio.

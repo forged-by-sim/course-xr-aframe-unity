@@ -1,0 +1,83 @@
+🧪 Troubleshooting & Failed Attempts Log
+
+A transparent record of errors, false starts, and fixes during the Unity animation pipeline
+
+❌ Drag-and-Drop Fail: Unity Prefab Wouldn’t Insert
+
+At one point, I attempted to drag the .fbx file directly into the Unity Hierarchy, expecting it to behave like a ready-made prefab. But Unity refused to insert it into the scene.
+
+Diagnosis:
+This happened because the .fbx model wasn’t structured as a proper prefab inside Unity’s project folders yet. It had no controller or prefab metadata.
+
+Fix:
+I right-clicked on the .fbx inside the Project panel and chose "Open Prefab". Then I created an empty GameObject in the scene and replaced it with the correct prefab from the Project folder using "Replace Prefab". Eventually, I deleted the extra copy to avoid duplicate dinosaurs in the scene.
+
+❌ “Why Isn’t It Swimming?” – No Animation on Play
+
+After connecting the Animator Controller and animation state, I hit Play—but the Rhomaleosaurus stood perfectly still.
+
+Diagnosis:
+Even though the animation clip was wired in, the prefab had no avatar assigned in the Animator component, so Unity didn’t know how to map the animation to the skeleton.
+
+Fix:
+I returned to the Import Settings for the .fbx model → Rig tab, and changed:
+
+Animation Type = Generic
+
+Avatar Definition = "Create From This Model"
+Then hit Apply.
+
+Unity automatically generated a new avatar file (Rhomaleo_Animated_EXPORT_FINALAvatar) which I dragged into the Avatar field of the prefab’s Animator component.
+
+❌ Recorder Window Missing After Installation
+
+I successfully installed Unity Recorder from the Package Manager, but Recorder didn’t appear under Window → General as expected.
+
+Diagnosis:
+Unity Recorder sometimes requires a restart after installation to fully register the UI panel hooks.
+
+Fix:
+I saved the scene, exited Unity completely, and re-opened the project. After restarting, Recorder appeared in the correct menu path.
+
+❌ Animation Played in Scene but Not in Play Mode
+
+Even after setting up the animator and dragging the avatar, Unity still didn’t play the animation the first time I hit Play.
+
+Diagnosis:
+The animation settings hadn’t been properly applied after updating the rig setup in the import window.
+
+Fix:
+I clicked Apply again on the .fbx model after confirming all settings (Generic rig, Avatar created from model, etc.). Only then did Unity refresh the internal mapping and let the animation play properly.
+
+❌ Transform Changes Lost After Entering Play Mode
+
+During positioning, I rotated the dinosaur and moved it forward to better frame it—but when I hit Play, the model snapped back to its original location.
+
+Diagnosis:
+Unity doesn't save changes made in the scene hierarchy while in Play Mode. Those changes are temporary and revert once Play Mode ends.
+
+Fix:
+I exited Play Mode, made the transform changes (Position Y = 0.2, Z = -4, Rotation Y = 180), and hit Ctrl + S to save the scene. This ensured the orientation stayed locked before recording.
+
+❌ Recorder Resolution Oversight
+
+Initially, Unity Recorder defaulted to the full scene resolution of 2560 × 1440, which was fine, but I considered switching to 1920 × 1080 (Full HD) for compatibility and file size balance.
+
+Note:
+1920 × 1080 is indeed W x H (Width by Height), and it’s the standard for most screen recordings and portfolio videos.
+
+❌ “Two Dinosaurs” Confusion
+
+At one point, I had both the rigged but static version and the animated prefab in the scene, which caused confusion during Play Mode. Only one had animation logic and the other sat still.
+
+Fix:
+I carefully compared the hierarchy, identified the animated prefab (Rhomaleo_Animated_EXPORT_FINAL), and deleted the static copy. This ensured clarity during testing and prevented duplication in future builds.
+
+❌ Dragging the Avatar into the Animator Didn’t Work
+
+While trying to assign the Avatar, Unity wouldn’t allow a drag-and-drop from the Project panel directly into the Animator component’s Avatar slot.
+
+Fix:
+Instead of dragging, I clicked the small circle icon next to the Avatar field in the Animator component, which opened Unity’s object selector. From there, I selected Rhomaleo_Animated_EXPORT_FINALAvatar.
+
+This full log shows not just what worked—but everything that didn’t, and how it was resolved. These aren’t flaws; they’re proof of process, which is especially valuable when presenting technical XR or simulation work to future employers and collaborators.

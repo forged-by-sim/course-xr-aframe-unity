@@ -1,0 +1,142 @@
+🧯 Documenting Failed Attempts & Errors (Blender → Unity Rig Workflow)
+⚠️ Early Rigging Roadblocks in Blender
+
+The initial plan was to build a full skeleton (spine, neck, tail, limbs) using Blender's Armature system and parent it to the mesh with automatic weights. However, Blender on touchscreen + stylus input proved unreliable:
+
+Clicking the bone tips (head/tail) to extrude would not register at all
+
+Blender didn’t show blue dots or bone selection highlights as expected
+
+Even with X-Ray mode and overlay settings enabled, the Armature could not be interacted with properly
+
+Selecting the tip and pressing E to extrude did nothing visually
+
+Using the extrude tool from the left toolbar didn’t respond to pen input
+
+Eventually, Blender generated a second unconnected bone by accident, which led to additional cleanup
+
+Ultimately, I handed off the rigging portion to Sol, since manual extrusion wasn't functional under my current Blender setup (touchscreen tablet + stylus + keyboard).
+
+⚠️ The Bee Incident (File Preview Mismatch)
+
+At one point, I clicked on what I believed was the exported .glb of the dinosaur in Windows 3D Viewer. The file failed to load and then previewed… a bee.
+
+Turns out, the .glb either failed to export properly, or Windows 3D Viewer was loading a cached preview of a completely unrelated model (likely a default sample from earlier). This confirmed that I needed to not trust 3D Viewer previews blindly and instead verify imports inside Unity.
+
+⚠️ Broken .fbx Import Attempts in Unity
+
+Several FBX files were generated and tested. Most of them imported into Unity but failed in different ways:
+
+The prefab showed no model in the scene
+
+Console threw ImportFBX Errors
+
+Armature showed up as “spaghetti bones” with no mesh
+
+Some .fbx files only had bones with no mesh included at all
+
+Others looked okay in the Project panel, but Unity didn’t allow dragging them into the scene
+
+Even creating prefab variants from these FBX files still resulted in null references or blank GameObjects
+
+In some cases, dragging the .fbx into the Hierarchy did nothing. In others, Unity allowed creating a variant but would crash or throw transform errors upon instantiation.
+
+It became clear that although the Blender model looked complete, the exports were often broken due to:
+
+Not applying transforms (Ctrl + A → Apply All Transforms)
+
+Not selecting both the mesh and armature at export
+
+Using inconsistent scale (e.g. 1.03 instead of 1.00)
+
+In some exports, “Apply Modifiers” or “Apply Unit” was not checked
+
+Sometimes Blender exported mesh without its vertex groups properly bound to bones, so the skin wouldn’t animate at all
+
+⚠️ The “Can’t Drag Into Scene” Problem
+
+Even after a proper .fbx export, Unity would not allow dragging the prefab into the scene.
+
+After checking:
+
+Prefab preview was valid
+
+Prefab expanded to show mesh and bones
+
+Materials appeared under the Renderer
+
+But Unity still silently refused to allow dragging.
+
+This was resolved by:
+
+Creating an Empty GameObject in the scene
+
+Right-clicking that empty object and choosing Prefab > Replace With Prefab
+
+Selecting the working .fbx variant
+
+Unity replaced the empty with the prefab content — and it finally appeared
+
+This workaround solved the dragging issue, but it was a surprising Unity behavior that wasn’t well-documented in official docs.
+
+⚠️ Disappearing Prefab at (0,0,0)
+
+After placement, setting the dino prefab's position to (0, 0, 0) made it appear to "disappear."
+
+This wasn't actually a bug — the prefab moved to the origin, but my camera and scene view were centered elsewhere. Once I pressed F to focus the Scene view on the selected prefab, the model reappeared, centered and scaled correctly.
+
+Lesson: a prefab being “invisible” doesn’t always mean it's broken. It might just be out of view.
+
+⚠️ Rhomaleo_Weighted_UNITY_FINAL(static).fbx = Armature Only
+
+At one point, Unity imported a static .fbx version which showed bones but no mesh.
+
+It turned out the static file had:
+
+Correct scale (1.00)
+
+No mesh — only the armature
+
+This was likely exported with only the Armature selected and no mesh object, which made it useless for visual placement or animation.
+
+✅ What Finally Worked
+
+After repeated attempts and checklist refinement, the final .fbx was exported using:
+
+Both Mesh and Armature selected
+
+Scale set to 1.00
+
+Transforms applied
+
+Export settings matching Unity’s coordinate system (-Z Forward, Y Up)
+
+“Apply Unit” and “Apply Transform” checked
+
+“Apply Modifiers” checked
+
+All animation boxes checked (even if no animation was embedded yet)
+
+Once imported into Unity, the prefab:
+
+Showed correct structure and materials
+
+Could be opened directly via “Open Prefab” view
+
+Could be added to the scene using “Replace With Prefab”
+
+Was positioned cleanly at (0,0,0) with scale (1,1,1)
+
+💡 Why These Failures Are Valuable
+
+Every mistake helped clarify:
+
+How strict Unity is about scale, transform, and hierarchy during .fbx import
+
+How Blender’s export settings directly impact rig and prefab behavior
+
+How broken drag behavior in Unity is sometimes solved with prefab replacement
+
+How relying on 3D viewers outside Unity can give false confirmations
+
+All of this made me more aware of Blender’s export structure, Unity’s prefab workflow, and how to prep models for VR and AR projects in the future.

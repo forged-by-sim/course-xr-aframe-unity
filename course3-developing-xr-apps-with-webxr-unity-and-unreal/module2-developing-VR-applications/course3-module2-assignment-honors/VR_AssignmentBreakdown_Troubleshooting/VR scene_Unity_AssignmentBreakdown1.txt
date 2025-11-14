@@ -1,0 +1,116 @@
+🧠 Unity AR Project Log: Dino Visibility, Materials, and Mixamo Rigging Failure
+
+Project: Rhomaleosaurus XR Honors Assignment
+Tools Used: Unity 6.2, A-Frame, Mixamo, Blender (planned), GitHub
+Status: Material applied; rigging attempt failed; switching to Blender
+
+🎯 Objective
+
+The goal of this session was to restore the visibility and animation functionality of the Rhomaleosaurus 3D model within a Unity scene. The creature had previously been viewable and animated (either in Unity or the Windows 3D Viewer), but it was no longer displaying correctly or animating inside Unity. The intended outcome was to apply the correct material to the model, verify that it rendered properly, and, if possible, reintroduce animations through Mixamo or Blender.
+
+🛠️ Step-by-Step Breakdown
+1. Scene Saving and Reload Behavior
+
+Upon entering Play Mode in Unity, previously configured ambient lighting and fog settings reset. This revealed that pressing Play before saving causes Unity to reload the domain and revert to default settings. To prevent this, always click File → Save or use Ctrl+S before entering Play Mode.
+
+After saving, we verified scene existence through:
+
+The Assets > Scenes folder
+
+File Explorer view, confirming that VR_Rhomaleosaurus_Scene.unity was stored correctly alongside its .meta file
+
+2. Model Appears Invisible
+
+The Rhomaleosaurus model was visible only as a wireframe outline (transparent or missing materials). The prefab had been correctly instantiated in the hierarchy and placed at the proper transform origin.
+
+Upon further inspection:
+
+The prefab scale was adjusted to 50, 50, 50 for visibility.
+
+The actual bones and joints were visible in the hierarchy.
+
+The model’s mesh parts (Object_7 and Object_9) were found to use a default blinn4 material with no visible texture or color.
+
+3. Applying the Correct Material
+
+We attempted to drag Dino_Material (located under Assets > Materials_RHOMA) onto Object_2, which had no renderer. However, only mesh-containing objects (like Object_7 or Object_9) can accept materials.
+
+Steps to successfully apply the material:
+
+Locate Object_7 and Object_9 under the prefab.
+
+In the Inspector Panel, confirm they had a Skinned Mesh Renderer component.
+
+Under “Materials,” replace blinn4 with Dino_Material by dragging or selecting it via the dropdown.
+
+After this step, the dinosaur model successfully reappeared in the scene view with proper textures. We saved the scene again.
+
+4. Anticipated Animation Restoration
+
+We expected that the .glb model would retain animations from the original Windows 3D Viewer preview, but Unity did not automatically carry over those animations. At this point, we assumed the imported .glb either:
+
+Did not contain animations,
+
+Or they were incompatible/missing during import.
+
+This led us to attempt external rigging and animation via Mixamo.
+
+🔁 Mixamo Auto-Rigger Attempt
+
+We uploaded the original .glb file (from Models_RHOMA/Legacy) to Mixamo.com, expecting Mixamo to auto-rig it for humanoid-style animations. However, Mixamo returned this error:
+
+“Sorry, unable to map your existing skeleton.”
+
+This meant that the dino's mesh or existing skeleton did not meet Mixamo’s auto-rigging requirements (which are built around bipeds with standard joint structures like chin, wrists, elbows, knees, and groin).
+
+Helpful notes from Mixamo’s documentation:
+
+Accepted formats: .fbx, .obj, .zip
+
+.obj files must be zipped with textures
+
+.fbx files must have “Embed Media” enabled when exported (important for Blender)
+
+Because the Rhomaleosaurus is not humanoid, Mixamo could not process the skeletal structure.
+
+🦴 Pivoting to Blender for Manual Rigging
+
+After Mixamo failed, we decided to use Blender for full control over the rigging and animation process.
+
+Next Steps in Blender:
+
+1. Download Blender from blender.org/download
+
+2. Import the .glb or .fbx Rhomaleosaurus model.
+
+3. Add an armature manually (bones for swimming motion).
+
+4. Weight paint the mesh to bones.
+
+5. Animate a swim loop.
+
+6. Export the animated model as .fbx with “Embed Media” enabled.
+
+7.Re-import into Unity to connect the animation.
+
+📝 Key Learnings and Notes
+
+Saving scenes before Play Mode is critical; lighting/fog resets otherwise.
+
+Prefab mesh renderers (Skinned Mesh Renderer) must be targeted to apply materials.
+
+Unity does not automatically apply materials to mesh if they’re not explicitly set.
+
+Mixamo only works with humanoid shapes, not marine reptiles or quadrupeds.
+
+Switching to Blender gives us more control over bones, weights, and animation cycles.
+
+Always embed media in .fbx if you want textures preserved during export.
+
+✅ Final Outcome of This Session
+
+Model visibility fully restored via correct material application in Unity.
+
+Mixamo auto-rigging deemed incompatible with non-humanoid dino.
+
+Prepared to switch to Blender for animation control.

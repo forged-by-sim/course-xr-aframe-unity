@@ -1,0 +1,82 @@
+VR Scene Submission – Honors Assignment 2 (Summary)
+
+Overview
+
+This tutorial documents the complete process of preparing and submitting a VR honors assignment for Course 3 of the “Extended Reality for Everybody” specialization. The goal was to transform a previously developed WebXR prototype into an immersive VR scene using Unity, complete with lighting, animation, and refined camera perspective.
+
+The project features a fully rigged and animated Rhomaleosaurus, which swims through an underwater environment as seen from a static observer’s point of view. This passive but immersive setup was designed to demonstrate scale, motion, and environmental layering in VR.
+
+VR Assignment Requirements
+
+The VR scene assignment required the following:
+
+Add a camera rig and view the scene in VR.
+
+Adapt the 3D scene’s scale, layout, and camera angles for immersion.
+
+Enhance the environment using terrain, lighting, sound, or other sensory elements.
+
+Optionally support travel (e.g., teleportation).
+
+Optionally support object manipulation (e.g., grabbing, rotating).
+
+The expected outcome was a deeper sense of immersion through proper scaling, depth, and design layering (foreground, midground, background).
+
+Media Strategy and Submission Choices
+
+To fully satisfy submission criteria while visually telling the story of progression, the following three media assets were selected:
+
+A-Frame Screenshot
+The first image, rendered using A-Frame in a WebXR scene, served as a foundational prototype. It showed the Rhomaleosaurus in a static pose, used for early layout testing, model alignment, and spatial calibration.
+
+Unity Scene Screenshot
+The second image was captured from Unity's Game View. It showed the final swimming animation in motion, with transform properties and prefab organization visible in the Unity UI. This screenshot demonstrated the evolution from concept to immersive simulation, and provided visual evidence of animation integration and VR optimization.
+
+Unity Rendered Video
+A short .mp4 file captured with Unity Recorder showcased the Rhomaleosaurus swimming gracefully through its underwater path. The camera was fixed, simulating a viewer submerged and observing passively, as one might experience in VR. This video formed the most immersive component of the submission, showing how lighting, motion, and animation combined into a layered VR scene.
+
+Camera Setup and Technical Details
+
+In Unity, the transform properties of the animated model were carefully set:
+
+Position: X = 0, Y = 0.2, Z = -4
+
+Rotation: Y = 180 (to face the user)
+
+Scale: Uniform (1,1,1)
+
+This alignment ensured that the Rhomaleosaurus swam toward the viewer with proper proportions and spacing. The camera remained stationary to emphasize the creature’s motion rather than user movement, creating a “VR aquarium” effect.
+
+Lighting was added to simulate underwater ambiance. Particle effects and audio were not included in this version but are planned for future iterations.
+
+Reflection on the Development Process
+
+The project began as a simple WebXR prototype, then evolved into a fully rigged Unity VR animation. One of the biggest technical challenges was rigging the dinosaur in Blender and exporting it cleanly into Unity. The process required manual weight painting, parenting, and fixing bone structures before animations could play correctly. This rigging effort was a significant turning point, enabling the animated swim loop and transforming the static model into a lifelike creature.
+
+Unity Recorder setup also presented challenges. The Recorder window initially failed to appear, requiring a restart of Unity and reconfiguration of resolution and output. Eventually, the scene was captured successfully at 1920x1080 for submission.
+
+Submission Summary and Feedback Goals
+
+The final submission included:
+
+Title: Rhomaleo Swim Showcase
+
+Category: Immersive VR
+
+Platform: Unity
+
+Media: Two images and one video as described above
+
+The assignment text included a detailed reflection on the process and three feedback questions for peer review:
+
+Best practices for reducing animation file size while preserving smoothness.
+
+Recommendations on where to start when adding object manipulation (grabbing, rotating).
+
+Advice on whether to implement teleportation before or after UI elements like toggle menus.
+
+Branding and GitHub Identity Evolution
+
+Final Thoughts
+
+This VR project marked a milestone: a fully rendered, animated, and immersive XR scene delivered from scratch — from model rigging in Blender, to prefab setup and animation in Unity, to final rendering for academic submission. It serves as both a learning artifact and portfolio piece, demonstrating the developer’s fluency in XR tools, animation pipelines, and creative direction.

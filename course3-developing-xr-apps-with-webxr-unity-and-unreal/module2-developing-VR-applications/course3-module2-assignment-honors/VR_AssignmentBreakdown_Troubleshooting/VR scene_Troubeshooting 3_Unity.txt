@@ -1,0 +1,105 @@
+Troubleshooting & Failed Attempts (Unity & Workflow Issues)
+
+Throughout the development of the Rhomaleo Swim Showcase VR scene, several challenges and failed attempts occurred. These are documented here not only for transparency but also to serve as future references for others working with Unity, Blender, and animation workflows in immersive XR projects.
+
+Unity Recorder Failure (Initial Setup Bug)
+
+After installing Unity Recorder to capture the final animation, the Recorder window failed to appear under Window → General → Recorder → Recorder Window. This was initially confusing, especially because Unity showed the package as installed.
+
+After several attempts to toggle windows and restart the editor, the solution was to:
+
+Stop Play Mode
+
+Close Unity entirely
+
+Reopen the project, which finally allowed the Recorder to appear
+
+It was a subtle but important lesson: some Unity UI features don't fully initialize unless the Editor is restarted after installation.
+
+Camera and Transform Glitches
+
+During scene setup, adjusting the Rhomaleosaurus model's position to (0, 0, 0) caused it to disappear from view. This happened because the model was not actually centered — its origin point was offset in Blender.
+
+To fix this, the transform was set to:
+
+Y = 0.2 (to lift it slightly above floor plane)
+
+Z = -4 (to push it back into visible space)
+
+Y Rotation = 180 (to ensure it faced the camera)
+
+This fix was done manually after testing different camera angles. The Unity Scene view was essential for previewing how the dino would appear during playback.
+
+Blender → Unity Import Issues
+
+During early attempts to animate the Rhomaleosaurus in Unity, the model had no working animation despite being exported with an armature. The culprit was a missing or broken rig from Blender.
+
+Troubleshooting included:
+
+Multiple Blender exports (FBX and GLB formats)
+
+Manual weight painting of each bone
+
+Parenting the armature using Ctrl + P → With Automatic Weights
+
+Testing bone rotations in Blender to ensure deformation worked before exporting
+
+Only after meticulously correcting bone hierarchy and applying transforms (Ctrl + A → Apply All Transforms) did the animation play as expected in Unity.
+
+Eyes and Teeth Floating Off the Body
+
+During the rigging phase in Blender, the eyes and teeth detached from the main mesh once the model was animated. This occurred because they weren’t joined with the body mesh and had no vertex weights assigned.
+
+Solutions attempted:
+
+Tried to merge vertices manually (M → Merge by Distance) — didn’t work initially
+
+Attempted to parent the teeth and eyes to the rig separately — still caused detachment
+
+Eventually decided to join all objects into a single mesh before applying the armature
+
+Even after joining, the weight painting process had to be repeated so that the bones affected the correct geometry. This trial-and-error consumed a significant amount of time and led to multiple failed Unity imports.
+
+Scene Freezes & Editor Hangs
+
+Several Unity freezes occurred during long play sessions, often while editing animation curves or toggling back and forth between Scene and Game views. These issues were mitigated by:
+
+Saving frequently
+
+Exiting Play Mode before making major inspector changes
+
+Keeping the project directory clean and closing unnecessary tabs
+
+Animation Loop Didn’t Work on First Try
+
+The first exported animation didn’t loop properly. The Rhomaleosaurus stopped mid-swim or jittered in place. This was due to:
+
+Looping not being checked in Unity’s animation import settings
+
+Timeline not being extended far enough
+
+Model scale sometimes resetting after reimport
+
+The fix involved:
+
+Checking "Loop Time" in the animation inspector
+
+Setting the correct sample rate and frame duration
+
+Reapplying transform overrides after prefab replacement
+
+Lessons Learned
+
+Every failed attempt strengthened the understanding of:
+
+Blender-to-Unity pipelines
+
+Rigging and weight painting precision
+
+Unity prefab behavior
+
+Editor quirks and package manager delays
+
+The value of saving, restarting, and documenting every step
+
+These missteps are not just part of the process. They are the process. They will be preserved here as a reminder that successful XR development is equal parts problem-solving and creativity.

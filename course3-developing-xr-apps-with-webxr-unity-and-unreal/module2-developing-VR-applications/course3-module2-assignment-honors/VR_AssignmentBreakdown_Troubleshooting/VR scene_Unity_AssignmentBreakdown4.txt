@@ -1,0 +1,184 @@
+🧠 Preparing and Importing a Rigged Dinosaur Model from Blender to Unity (for VR + AR Scenes)
+
+This guide walks through the full process I used to prepare a rigged Rhomaleosaurus 3D model in Blender, export it as an .fbx file, and import it into Unity for use in both VR and AR scenes. The focus was on maintaining animation compatibility, preserving proper hierarchy, and ensuring prefab flexibility once inside Unity.
+
+🦴 Step 1: Preparing the Rig in Blender
+
+The original Rhomaleosaurus model was already rigged and parented correctly using Blender's Armature. However, I needed to ensure the model was ready for Unity export by reviewing several settings before exporting:
+
+Switched to Object Mode
+
+Selected Armature + Mesh using Shift + Click
+
+Verified transforms were applied using Ctrl + A → Apply All Transforms
+
+Opened the FBX export dialog via File > Export > FBX (.fbx)
+
+From here, I configured the following options:
+
+Export Settings:
+
+Selected Objects: Checked
+
+Object Types: Mesh + Armature (also included “Other” just in case)
+
+Transform:
+
+Scale: 1.00 (leaving it here instead of 1.03 for Unity compatibility)
+
+Forward: -Z Forward
+
+Up: Y Up
+
+Apply Unit and Apply Transform: Checked
+
+Geometry:
+
+Apply Modifiers: Checked
+
+Normals: "Normals Only"
+
+Armature:
+
+Primary Bone Axis: Y Axis
+
+Secondary Bone Axis: X Axis
+
+Armature FBX Node: Root
+
+Only Deform Bones: Checked
+
+Animation:
+
+Key All Bones: Checked
+
+NLA Strips: Checked
+
+All Actions: Checked
+
+I saved the file as:
+Rhomaleo_Weighted_UNITY_FINAL_FIXED.fbx
+
+This ensured my file would import with full hierarchy and be animation-ready.
+
+🧱 Step 2: Importing the .fbx into Unity (with Proper Prefab Setup)
+
+Inside Unity 6.2, I navigated to my Assets > Models_RHOMA > Rigged folder and dragged the .fbx file into the project panel. Unity generated a preview of the model and exposed the import settings under the Inspector panel.
+
+Model Tab Settings:
+
+Scale Factor: 1
+
+Convert Units: Checked
+
+Preserve Hierarchy: Checked
+
+Optimize Mesh: Everything
+
+Generate Colliders: Unchecked (not needed for visual prototype)
+
+Import BlendShapes / Visibility / Cameras / Lights: Off (not needed)
+
+Normals: Import
+
+Weld Vertices: Off
+
+Once satisfied, I right-clicked the .fbx file and selected:
+
+Create > Prefab Variant
+
+I named this new prefab variant:
+Rhomaleo_Weighted_UNITY_FINAL_FIXED.prefab
+
+This allows me to edit the prefab directly without touching the original .fbx import structure, keeping things clean.
+
+🧩 Step 3: Adding the Prefab to the Scene
+
+At first, Unity didn’t allow me to drag and drop the prefab into the scene directly.
+
+Workaround:
+
+I created an empty GameObject in the scene called Rhomaleo_Instance
+
+Right-clicked the prefab in the Project panel → selected "Prefab > Replace With Prefab"
+
+This replaced the placeholder object with the prefab content.
+
+Once instantiated into the scene, the dinosaur appeared properly — fully visible, rigged, and ready for transformation.
+
+🧭 Step 4: Adjusting Position and Verifying Visibility
+
+I positioned the Rhomaleosaurus at:
+
+Position: (0, 0, 0)
+
+Rotation: (0, 0, 0)
+
+Scale: (1, 1, 1)
+
+Initially, setting the position to zero caused the dinosaur to disappear from the visible camera frustum. This was just a visibility issue — panning around revealed it was just off-screen. Once I moved the scene view camera and re-aligned the prefab with the environment floor, the model reappeared.
+
+Key Tip: When repositioning prefabs, make sure to verify Scene view alignment — the model may be present, just not visible in your current view angle.
+
+🧪 Step 5: Cross-Referencing with Original .glb Viewer
+
+As a visual reference, I also opened the original rhomaleosaurus_high.glb file in a 3D viewer to see how the skeleton + textures appeared with animation and lighting. This was useful for:
+
+Comparing smoothness of model movement
+
+Spot-checking whether textures or materials needed adjusting
+
+Planning for the animation pipeline in Unity later (e.g., idle vs swim cycle)
+
+The goal is to replicate or approximate this visual experience in the final Unity AR scene — ideally triggered with tap interaction.
+
+🔄 Step 6: Animation Consideration
+
+At this stage, I didn’t yet configure Unity animations.
+
+Question: Should I have exported Blender animation actions explicitly before import?
+
+Yes. While the model was exported with animation strips checked (All Actions), Unity requires mapping animation clips in the Rig and Animation tabs after import. If these aren’t found automatically, Unity may need:
+
+Manual animation import mapping
+
+An Animator Controller setup
+
+Keyframes set in Timeline or Animation window
+
+That will be handled in the next phase (AR interactivity). The base rigging and prefab structure are now rock solid.
+
+🥽 Outcome: VR Scene Complete, AR Scene Foundation Ready
+
+By completing this prefab integration, I now have:
+
+A working VR scene with a skeletal Rhomaleosaurus
+
+A functioning rigged prefab variant compatible with Unity animation
+
+The Unity Editor properly handling object transforms and hierarchy
+
+My AR scene's major building blocks complete
+
+Next steps include:
+
+Adding AR Session Origin + AR Camera for AR Foundation
+
+Configuring tap-to-place logic
+
+Linking animations to user interactions
+
+Time estimate for the final AR build:
+2.5 to 4 hours depending on testing, platform deployment, and interaction depth.
+
+💡 Lessons Learned
+
+Blender’s FBX export is highly customizable — exporting only what's necessary avoids Unity import bloat
+
+Unity’s prefab system is sensitive to hierarchy — use Prefab Variants for clean editing
+
+Sometimes dragging a prefab into the scene fails — use "Replace With Prefab" as a workaround
+
+Always double-check object visibility after transform resets
+
+Planning your Blender rig and animation before export saves time in Unity.
